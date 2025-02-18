@@ -1,0 +1,22 @@
+import 'bootstrap';
+import { createApp } from 'vue';
+import axios from 'axios';
+import VueAxios from 'vue-axios';
+import Loading from 'vue3-loading-overlay';
+import 'vue3-loading-overlay/dist/vue3-loading-overlay.css';
+import { currency, date } from '@/methods/filters';
+import $httpMessageState from '@/methods/pushMessageState';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import App from './App.vue';
+import router from './router';
+
+const app = createApp(App);
+app.config.globalProperties.$filters = {
+  date,
+  currency,
+};
+app.config.globalProperties.$httpMessageState = $httpMessageState;
+app.use(VueAxios, axios);
+app.use(router);
+app.component('LoadingElement', Loading);
+app.mount('#app');
