@@ -7,8 +7,8 @@
       <thead>
         <tr>
           <th width="120" class="text-center">分類</th>
-          <th width="120">產品名稱</th>
-          <th width="300">商品圖片</th>
+          <th width="120">商品圖片</th>
+          <th width="300">產品名稱</th>
           <th width="120" class="text-center">原價</th>
           <th width="120" class="text-center">售價</th>
           <th width="100">是否啟用</th>
@@ -18,8 +18,8 @@
       <tbody>
         <tr v-for="item in products" :key="item.id">
           <td class="text-center">{{ item.category }}</td>
-          <td>{{ item.title }}</td>
-          <td><img class="img-fluid" :src="item.imageUrl" alt=""></td>
+          <td><img class="img-fluid" :src="item.imageUrl" alt="" width="100"></td>
+          <td class="col-4">{{ item.title }}</td>
           <td class="text-center">{{ $filters.currency(item.origin_price) }}</td>
           <td class="text-center">{{ $filters.currency(item.price) }}</td>
           <td>

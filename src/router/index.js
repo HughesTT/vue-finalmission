@@ -20,18 +20,45 @@ const routes = [
     component: () => import('../views/backstage/LoginPage.vue'),
   },
   {
+    path: '/productlist',
+    component: () => import('../views/ProductList.vue'),
+    children: [
+      { // 對應單一產品的資訊頁面
+        path: 'allproducts',
+        component: () => import('../views/ProductView.vue'),
+      },
+      { // 對應單一產品的資訊頁面
+        path: 'product/:productId',
+        component: () => import('../views/ProductMore.vue'),
+      },
+    ],
+  },
+  {
     path: '/user',
     component: () => import('../views/UserBoard.vue'),
     children: [
       {
+        path: 'favorite',
+        component: () => import('../views/UserFavorite.vue'),
+      },
+      {
         path: 'cart',
         component: () => import('../views/UserCart.vue'),
       },
-      { // 對應單一產品的資訊頁面
-        path: 'product/:productId',
-        component: () => import('../views/UserProduct.vue'),
+      {
+        path: 'payment',
+        component: () => import('../views/PayMent.vue'),
+      },
+      {
+        path: 'userorder/:orderId',
+        component: () => import('../views/UserOrder.vue'),
       },
     ],
+  },
+  {
+    path: '/service',
+    name: '客服維修',
+    component: () => import('../views/UserService.vue'),
   },
   {
     path: '/dashboard',

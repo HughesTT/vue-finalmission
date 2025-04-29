@@ -17,17 +17,22 @@
             </p>
           </div>
         </div>
-        <div class="col-lg-6 col-xs-12">
-          <img src="../assets/img/about.jpg" alt="aboutus" class="img-fluid">
+        <div class="col-md-6 col-12">
+          <img src="../assets/img/about.jpg" alt="aboutus" class="img-fluid aboutimg">
         </div>
       </div>
     </div>
   </div>
+  <Footer />
 </template>
 
 <style lang="scss">
 body {
   background: #fff;
+}
+
+.about {
+  padding-bottom: 3em;
 }
 
 .about h1 {
@@ -45,6 +50,10 @@ h1 span {
   font-size: 1.3em;
 }
 
+.aboutimg {
+  margin-top: 2em;
+}
+
 .quote {
   font-size: 1.5em;
   font-weight: bold;
@@ -53,11 +62,21 @@ h1 span {
 
 <script>
 import NavBar from '@/components/NavBar.vue';
+import Footer from '@/components/FooterView.vue';
 
 export default {
   name: 'AboutView',
   components: {
     NavBar,
+    Footer,
+  },
+  methods: {
+    scrollBehavior() {
+      window.scrollTo(0, 0);
+    },
+  },
+  created() {
+    this.scrollBehavior();
   },
 };
 </script>
