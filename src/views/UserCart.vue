@@ -135,6 +135,7 @@ h3 {
   color: #fff;
   padding: 0.5em 1em;
   border-radius: 30px;
+  text-decoration: none;
 }
 
 .userfavorite {
@@ -250,6 +251,7 @@ export default {
   },
   created() {
     this.getCart();
+    this.scrollBehavior();
   },
 };
 </script>

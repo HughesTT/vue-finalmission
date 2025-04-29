@@ -79,6 +79,11 @@ const routes = [
       },
     ],
   },
+  {
+    path: '/:pathMatch(.*)*',
+    name: '404page',
+    component: () => import('../views/404Page.vue'),
+  },
 ];
 
 const router = createRouter({
