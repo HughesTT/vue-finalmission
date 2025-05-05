@@ -117,12 +117,10 @@ h3 {
   color: purple;
 }
 
-.container {
-  margin-top: 2rem;
-}
-
 .product_title {
   color: #333;
+  height: 2.5em;
+  margin-bottom: 0.5em;
 }
 
 .product_img {
@@ -140,7 +138,12 @@ h3 {
 .userfavorite {
   min-height: 200px;
   padding: 0 1em 0 1em;
+  margin-top: 150px;
   margin-bottom: 5em;
+
+  @media(max-width:960px) {
+    margin-top: 120px;
+  }
 }
 
 button {
@@ -180,7 +183,7 @@ button {
 }
 
 .product_price {
-  font-size: 1.3em;
+  font-size: 1em;
   font-weight: bold;
   color: blueviolet;
   margin-bottom: 5px;

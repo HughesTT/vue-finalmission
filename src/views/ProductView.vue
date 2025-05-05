@@ -33,23 +33,29 @@
             <div class="product_title">
               {{ item.title }}
             </div>
-            <div class="product_price">
-              $ {{ $filters.currency(item.price) }}
-            </div>
           </a>
-          <div class="btntool">
-            <button class="btn btn-outline-danger col-md-5 col-5" @click="toggleFavorite(item)">
-              <i class="bi bi-heart" v-if="!isFavorite(item.id)"></i>
-              <i class="bi bi-heart-fill" v-else></i>
-            </button>
-            <button type="button" class="moreinfo btn btn-outline-danger col-md-5 col-5" @click="addToCart(item.id)"
-              :disabled="this.status.loadingItem === item.id">
-              <div v-if="this.status.loadingItem === item.id" class="spinner-grow text-danger spinner-grow-sm"
-                role="status">
-                <span class="visually-hidden">Loading...</span>
+          <div class="d-flex bd-highlight mb-3 btntool">
+            <div class="me-auto p-1 bd-highlight align-self-center">
+              <div class="product_price text-start">
+                $ {{ $filters.currency(item.price) }}
               </div>
-              <i class="bi bi-cart2"></i>
-            </button>
+            </div>
+            <div class="bd-highlight">
+              <button class="btn btn-outline-danger" @click="toggleFavorite(item)">
+                <i class="bi bi-heart" v-if="!isFavorite(item.id)"></i>
+                <i class="bi bi-heart-fill" v-else></i>
+              </button>
+            </div>
+            <div class="bd-highlight">
+              <button type="button" class="moreinfo btn btn-outline-danger" @click="addToCart(item.id)"
+                :disabled="this.status.loadingItem === item.id">
+                <div v-if="this.status.loadingItem === item.id" class="spinner-grow text-danger spinner-grow-sm"
+                  role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <i class="bi bi-cart2"></i>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -67,21 +73,22 @@ h3 {
   color: purple;
 }
 
-.container {
-  margin-top: 2rem;
-}
-
 .productview {
+  margin-top: 150px;
   margin-bottom: 2em;
 
   @media (max-width: 960px) {
     padding: 1em 1em 0 1em;
     margin-bottom: 2em;
+    margin-top: 100px;
   }
 }
 
 .product_title {
-  color: #333;
+  color: #777;
+  font-weight: bold;
+  font-size: 1em;
+  height: 2.5em;
 }
 
 .productbox {
@@ -129,7 +136,7 @@ h3 {
 }
 
 .product_price {
-  font-size: 1.3em;
+  font-size: 1em;
   font-weight: bold;
   color: blueviolet;
 }

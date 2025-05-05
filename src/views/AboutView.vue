@@ -32,7 +32,12 @@ body {
 }
 
 .about {
+  margin-top: 120px;
   padding-bottom: 3em;
+
+  @media(max-width:960px) {
+    margin-top: 100px;
+  }
 }
 
 .about h1 {

@@ -1,6 +1,6 @@
 <template>
-  <nav class="navbar navbar-expand-lg sticky-top">
-    <div class="container-fluid">
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
       <a class="navbar-brand" href="#">
         <img src="../assets/img/logo.png" alt="" class="img-fluid" width="80">
       </a>

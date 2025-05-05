@@ -9,9 +9,9 @@
             <table class="table align-middle">
               <thead>
                 <tr>
-                  <th scope="col">商品名稱 / 圖片</th>
-                  <th scope="col" width="90" class="text-center">數量</th>
-                  <th scope="col" class="text-end">價格</th>
+                  <th scope="col-4">商品名稱 / 圖片</th>
+                  <th scope="col-1" width="90" class="text-center">數量</th>
+                  <th scope="col-2" class="text-end">價格</th>
                 </tr>
               </thead>
               <tbody>
@@ -26,8 +26,8 @@
                     </div>
                   </td>
                   <td class="text-end">
-                    <small>原價 : $ {{ $filters.currency(item.total) }}</small><br>
-                    <div class="text-success" v-if="cart.final_total !== cart.total">折扣價 : $ {{
+                    <div>${{ $filters.currency(item.total) }}</div>
+                    <div class="text-success" v-if="cart.final_total !== cart.total">折扣價 : ${{
                       $filters.currency(item.final_total) }}</div>
                     <div class="text-success" v-if="item.coupon">已使用優惠券</div>
                   </td>
@@ -49,15 +49,80 @@
                 </tr>
               </tfoot>
             </table>
-            <div class="col-md-6 usecoupon input-gorup mb-3 input-group-sm">
+            <div class="col-md-12 col-12 usecoupon input-gorup mb-3 input-group-sm">
               <p class="title">使用優惠券</p>
               <div class="row">
-                <div class="col-md-7 mb-3">
+                <div class="col-md-4 mb-3">
                   <input aria-label="couponcode" v-model="coupon_code" type="text" class="form-control"
                     placeholder="請輸入優惠碼">
                 </div>
-                <div class="col-md-5 input-group-append">
+                <div class="col-md-3 input-group-append">
                   <button class="btn btn-secondary" type="button" @click="addCouponCode">套用優惠碼</button>
+                </div>
+              </div>
+            </div>
+            <div class="creditcard col-md-12 col-12 mb-3">
+              <div class="title mb-3">付款方式</div>
+              <div class="form-check mb-3">
+                <input class="form-check-input" type="radio" name="payway1" id="payway1" value="creditcard1"
+                  v-model="selectedPaymentMethod">
+                <label class="form-check-label mb-3" for="payway1">信用卡一次付清</label>
+                <div class="col-md-8 col-xs-12 col-12 creditcardinfo needs-validation"
+                  v-if="selectedPaymentMethod === 'creditcard1'">
+                  <label for="ccardnum" class="col-sm-3 col-form-label">信用卡卡號</label>
+                  <div class="row col-md-12 col-12 g-4 mb-2">
+                    <div class="col-md-3 col-sm">
+                      <input type="text" maxlength="4" class="form-control" placeholder="0857" aria-label="num1">
+                    </div>
+                    <div class="col-md-3 col-sm">
+                      <input type="text" maxlength="4" class="form-control" placeholder="0857" aria-label="num2">
+                    </div>
+                    <div class="col-md-3 col-sm">
+                      <input type="text" maxlength="4" class="form-control" placeholder="0857" aria-label="num3">
+                    </div>
+                    <div class="col-md-3 col-sm mb-1">
+                      <input type="text" maxlength="4" class="form-control" placeholder="0857" aria-label="num4">
+                    </div>
+                  </div>
+                  <label class="col-sm-12 col-form-label">安全碼(卡片後面3位數字)</label>
+                  <div class="col-md-2 col-sm">
+                    <input type="text" maxlength="3" class="form-control" placeholder="cvc" aria-label="num4">
+                  </div>
+                </div>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="payway2" id="payway2" value="creditcard2"
+                  v-model="selectedPaymentMethod">
+                <label class="form-check-label mb-3" for="payway2">信用卡分期付款</label>
+                <div class="col-md-8 col-12 creditcardinfo" v-if="selectedPaymentMethod === 'creditcard2'">
+                  <label for="ccardnum" class="col-sm-3 col-form-label">信用卡卡號</label>
+                  <div class="row col-md-12 col-12 g-4 mb-2">
+                    <div class="col-md-3 col-sm">
+                      <input type="text" maxlength="4" class="form-control" placeholder="0857" aria-label="num1">
+                    </div>
+                    <div class="col-md-3 col-sm">
+                      <input type="text" maxlength="4" class="form-control" placeholder="0857" aria-label="num2">
+                    </div>
+                    <div class="col-md-3 col-sm">
+                      <input type="text" maxlength="4" class="form-control" placeholder="0857" aria-label="num3">
+                    </div>
+                    <div class="col-md-3 col-sm mb-1">
+                      <input type="text" maxlength="4" class="form-control" placeholder="0857" aria-label="num4">
+                    </div>
+                  </div>
+                  <label class="col-sm-12 col-form-label">安全碼(卡片後面3位數字)</label>
+                  <div class="col-md-2 col-sm mb-3">
+                    <input type="text" maxlength="3" class="form-control" placeholder="cvc" aria-label="num4">
+                  </div>
+                  <div class="col-md-3 col-sm">
+                    <label class="col-sm-12 col-form-label">分期期數</label>
+                    <select class="form-select col-md-2" aria-label="Default select example">
+                      <option selected>請選擇</option>
+                      <option value="1">3</option>
+                      <option value="2">6</option>
+                      <option value="3">12</option>
+                    </select>
+                  </div>
                 </div>
               </div>
             </div>
@@ -111,14 +176,32 @@ h3 {
   color: purple;
 }
 
+.userfavorite {
+  padding: 0 1em 0 1em;
+  margin-top: 150px;
+  margin-bottom: 5em;
+}
+
 .usecoupon {
-  background: #eee;
+  background: #f6f6f6;
   padding: 1em;
   border-radius: 15px;
 }
 
+.creditcard {
+  background: #f6f6f6;
+  padding: 1em;
+  border-radius: 15px;
+}
+
+.creditcardinfo {
+  background: #fffef1;
+  padding: 5px 1em 1em 1em;
+  border-radius: 15px;
+}
+
 .orderinfo {
-  background: #eee;
+  background: #f6f6f6;
   padding: 1em;
   border-radius: 15px;
 }
@@ -130,12 +213,17 @@ h3 {
 }
 
 .title {
+  font-size: 1.3em;
   font-weight: bold;
   padding-left: 10px;
   border-left: solid 5px #333;
 }
 
 .finaltotal {
+  font-weight: bold;
+}
+
+label {
   font-weight: bold;
 }
 </style>
@@ -165,6 +253,7 @@ export default {
       coupon_code: '', // 優惠碼
       finaltotal: 0,
       orderId: '',
+      selectedPaymentMethod: '', // 新增此變數
     };
   },
   methods: {
@@ -197,10 +286,15 @@ export default {
       };
       this.isLoading = true;
       this.$http.post(url, { data: coupon }).then((res) => {
-        this.$httpMessageState(res, '已套用優惠券');
-        this.coupon_code = ''; // 套用完優惠券將其清空
-        this.isLoading = false;
-        this.getCart();
+        if (this.coupon_code === this.coupon) {
+          this.$httpMessageState(res, '已套用優惠券');
+          this.coupon_code = ''; // 套用完優惠券將其清空
+          this.isLoading = false;
+          this.getCart();
+        } else {
+          this.$httpMessageState(res, '優惠碼使用');
+          this.isLoading = false;
+        }
       });
     },
     getOrderId(orderId) {
