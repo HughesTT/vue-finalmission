@@ -88,6 +88,7 @@ h3 {
   color: #777;
   font-weight: bold;
   font-size: 1em;
+  line-height: 1.3em;
   height: 2.5em;
 }
 

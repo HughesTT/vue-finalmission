@@ -121,7 +121,7 @@
             </div>
             <div class="notify-box">
               <div class="notify-boxtitle">- 貨到付款</div>
-              <p>超商或宅配取貨付款。 請注意，付款費用會根據產品價格而有所不同。</p>
+              <p>請注意，付款費用會根據產品價格而有所不同。</p>
             </div>
           </div>
         </div>
@@ -241,6 +241,13 @@ button {
   margin-bottom: 1.5em;
 }
 
+.product_title {
+  color: #777;
+  font-weight: bold;
+  font-size: 1em;
+  line-height: 1.3em;
+}
+
 .product_img {
   width: 100%;
   padding: 0 1em;
@@ -303,10 +310,6 @@ button {
 .relatedproducts h3 {
   margin-bottom: 1.5em;
   color: #7030a0;
-}
-
-.productbox {
-  padding: 1em;
 }
 </style>
 

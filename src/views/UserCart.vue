@@ -108,7 +108,7 @@
             </div>
             <div class="notify-box">
               <div class="notify-boxtitle">- 貨到付款</div>
-              <p>超商或宅配取貨付款。 請注意，付款費用會根據產品價格而有所不同。</p>
+              <p>請注意，付款費用會根據產品價格而有所不同。</p>
             </div>
           </div>
         </div>
@@ -138,6 +138,7 @@ h3 {
 }
 
 .userfavorite {
+  min-height: 200px;
   padding: 0 1em 0 1em;
   margin-top: 150px;
   margin-bottom: 5em;

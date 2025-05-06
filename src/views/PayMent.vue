@@ -258,7 +258,7 @@ export default {
       coupon_code: '', // 優惠碼
       finaltotal: 0,
       orderId: '',
-      selectedPaymentMethod: '', // 新增此變數
+      selectedPaymentMethod: '', // 新增此變數追蹤付款方式的選擇
     };
   },
   methods: {
