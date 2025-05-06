@@ -16,6 +16,7 @@
         </div>
       </div>
     </section>
+    <HomesectionOnsale />
     <Footer />
   </div>
 </template>
@@ -44,6 +45,7 @@ section {
 // @ is an alias to /src
 import NavBar from '@/components/NavBar.vue';
 import HeaderBanner from '@/components/HeaderBanner.vue';
+import HomesectionOnsale from '@/components/HomesectionOnsale.vue';
 import Footer from '@/components/FooterView.vue';
 
 export default {
@@ -57,6 +59,7 @@ export default {
     NavBar,
     HeaderBanner,
     Footer,
+    HomesectionOnsale,
   },
 };
 </script>

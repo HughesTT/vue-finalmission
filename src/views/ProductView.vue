@@ -20,6 +20,10 @@
           @click="category = '降噪'">
           降噪
         </button>
+        <button type="button" class="btn btn-outline-secondary" :class="{ 'active': category === '音訊眼鏡' }"
+          @click="category = '音訊眼鏡'">
+          音訊眼鏡
+        </button>
       </div>
       <div class="row">
         <div class="productbox col-md-3 col-6" v-for="item in filterProducts" :key="item.id">
@@ -157,6 +161,10 @@ h3 {
 
 .categorybtn button {
   margin-right: 0.5em;
+
+  @media(max-width:960px) {
+    font-size: 0.9em;
+  }
 }
 </style>
 
@@ -260,6 +268,9 @@ export default {
           break;
         case '降噪':
           filterProducts = this.products.filter((item) => item.category === '降噪');
+          break;
+        case '音訊眼鏡':
+          filterProducts = this.products.filter((item) => item.category === '音訊眼鏡');
           break;
         default:
           filterProducts = []; // Default to an empty array if no category matches

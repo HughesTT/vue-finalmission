@@ -48,7 +48,7 @@
       </div>
     </div>
   </div>
-  <div class="relatedproducts">
+  <div class="relatedproducts" v-if="filterProducts.length > 1">
     <div class="container">
       <div class="row justify-content-md-center">
         <h3>你可能感興趣的</h3>
