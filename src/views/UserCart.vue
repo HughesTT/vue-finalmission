@@ -140,7 +140,7 @@ h3 {
 .userfavorite {
   padding: 0 1em 0 1em;
   margin-top: 150px;
-  margin-bottom: 3em;
+  margin-bottom: 5em;
 
   @media(max-width:960px) {
     margin-top: 100px;
