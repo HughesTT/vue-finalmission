@@ -148,8 +148,9 @@
               </div>
               <div class="mb-3">
                 <label for="tel" class="form-label">收件人電話</label>
-                <VField id="tel" name="電話" type="tel" class="form-control" :class="{ 'is-invalid': errors['電話'] }"
-                  placeholder="請輸入電話" rules="required" v-model="form.user.tel"></VField>
+                <VField id="tel" name="電話" type="tel" class="form-control" maxlength="10"
+                  :class="{ 'is-invalid': errors['電話'] }" placeholder="請輸入電話" rules="required" v-model="form.user.tel">
+                </VField>
                 <ErrorMessage name="電話" class="invalid-feedback"></ErrorMessage>
               </div>
               <div class="mb-3">
