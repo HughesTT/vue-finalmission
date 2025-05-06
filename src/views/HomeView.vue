@@ -1,4 +1,5 @@
 <template>
+  <LoadingElement :active="isLoading"></LoadingElement>
   <div>
     <NavBar />
     <HeaderBanner />
@@ -47,6 +48,11 @@ import Footer from '@/components/FooterView.vue';
 
 export default {
   name: 'HomeView',
+  data() {
+    return {
+      isLoading: false,
+    };
+  },
   components: {
     NavBar,
     HeaderBanner,
