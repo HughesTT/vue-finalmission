@@ -63,7 +63,7 @@
             </div>
             <div class="creditcard col-md-12 col-12 mb-3">
               <div class="title mb-3">付款方式</div>
-              <div class="form-check mb-3">
+              <div class="form-check">
                 <input class="form-check-input" type="radio" name="payway1" id="payway1" value="creditcard1"
                   v-model="selectedPaymentMethod">
                 <label class="form-check-label mb-3" for="payway1">信用卡一次付清</label>
@@ -124,6 +124,11 @@
                     </select>
                   </div>
                 </div>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="payway4" id="payway4" value="creditcard4"
+                  v-model="selectedPaymentMethod">
+                <label class="form-check-label mb-3" for="payway4">貨到付款</label>
               </div>
             </div>
             <VForm class="orderinfo col-md-12" v-slot="{ errors }" @submit="createOrder">
@@ -286,7 +291,7 @@ export default {
       };
       this.isLoading = true;
       this.$http.post(url, { data: coupon }).then((res) => {
-        if (this.coupon_code === this.coupon) {
+        if (this.coupon_code === coupon.code) {
           this.$httpMessageState(res, '已套用優惠券');
           this.coupon_code = ''; // 套用完優惠券將其清空
           this.isLoading = false;
