@@ -9,8 +9,6 @@
 
 <style></style>
 
-<style></style>
-
 <script>
 import NavBar from '@/components/NavBar.vue';
 import emitter from '@/methods/emitter';

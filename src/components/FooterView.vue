@@ -1,16 +1,77 @@
 <template>
-  <div class="container">
-    <div class="col-6">
-      <ul>
-        <li><router-link to="/aboutus">About BOLBY</router-link></li>
-      </ul>
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 col-12 footer_section">
+          <div class="foot_title">Bolby Digital</div>
+          <div>
+            <router-link to="/aboutus" class="foot_subtitle">- 品牌故事</router-link>
+          </div>
+          <div>
+            <router-link to="/service" class="foot_subtitle">- 付款、運送、退貨須知</router-link>
+          </div>
+        </div>
+        <div class="col-md-3 col-12 footer_section">
+          <div class="foot_title">社群帳號</div>
+          <div class="socialicon">
+            <i class="bi bi-instagram"></i>
+            <i class="bi bi-twitter-x"></i>
+            <i class="bi bi-threads"></i>
+            <i class="bi bi-facebook"></i>
+            <i class="bi bi-youtube"></i>
+          </div>
+        </div>
+        <div class="col-md-3 col-12 footer_section">
+          <div class="foot_title">客服與維修</div>
+          <div class="foot_subtitle">service@bolbydigital.com.tw</div>
+          <div class="foot_subtitle">+886 2 8787-0857</div>
+        </div>
+        <div class="col-md-12 col-12 footer_section cright">
+          ©Bolby Digital Inc. ALL RIGHTS RESERVED
+        </div>
+      </div>
     </div>
-    <div class="col-6">
-
-    </div>
-  </div>
+  </footer>
 </template>
 
-<style></style>
+<style lang="scss">
+footer {
+  background-color: rgb(126, 86, 195);
+  padding: 2em 0;
+  color: #d2b4ff;
+  font-weight: bold;
 
-<script></script>
+  a {
+    color: #d2b4ff;
+    text-decoration: none;
+  }
+
+  @media(max-width:960px) {
+    padding: 2em 2em;
+  }
+}
+
+.foot_title {
+  color: #ddd;
+}
+
+.foot_subtitle {
+  font-size: 1em;
+  margin-left: 0.5em;
+  color: #d2b4ff;
+}
+
+.footer_section {
+  margin-bottom: 1.5em;
+}
+
+.cright {
+  @media(max-width:960px) {
+    text-align: center;
+  }
+}
+
+.socialicon i {
+  margin-right: 1em;
+}
+</style>
