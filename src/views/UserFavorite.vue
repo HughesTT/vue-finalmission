@@ -98,7 +98,7 @@
             </div>
             <div class="notify-box">
               <div class="notify-boxtitle">- 貨到付款</div>
-              <p>超商或宅配取貨付款。 請注意，付款費用會根據產品價格而有所不同。</p>
+              <p>請注意，付款費用會根據產品價格而有所不同。</p>
             </div>
           </div>
         </div>
@@ -117,12 +117,10 @@ h3 {
   color: purple;
 }
 
-.container {
-  margin-top: 2rem;
-}
-
 .product_title {
   color: #333;
+  height: 2.5em;
+  margin-bottom: 0.5em;
 }
 
 .product_img {
@@ -138,9 +136,14 @@ h3 {
 }
 
 .userfavorite {
-  min-height: 350px;
+  min-height: 200px;
   padding: 0 1em 0 1em;
+  margin-top: 150px;
   margin-bottom: 5em;
+
+  @media(max-width:960px) {
+    margin-top: 120px;
+  }
 }
 
 button {
@@ -180,7 +183,7 @@ button {
 }
 
 .product_price {
-  font-size: 1.3em;
+  font-size: 1em;
   font-weight: bold;
   color: blueviolet;
   margin-bottom: 5px;
@@ -197,6 +200,49 @@ button {
   color: #fff;
   padding: 0.5em 1em;
   border-radius: 30px;
+}
+
+.notify {
+  background: #eee;
+  padding: 2em 0 2.5em 0;
+  color: #333;
+}
+
+.notifybox {
+  @media(max-width: 960px) {
+    margin-bottom: 2em;
+  }
+}
+
+.notify-icon {
+  font-size: 3.5em;
+  text-align: center;
+  color: #333;
+}
+
+.notify-title {
+  font-size: 1.3em;
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.notify-border {
+  width: 100%;
+  height: 1px;
+  background: #999;
+  margin-bottom: 1em;
+}
+
+.notify-content {
+  padding: 0 1.5em;
+}
+
+.notify-box {
+  margin-bottom: 1em;
+}
+
+.notify-boxtitle {
+  font-weight: bold;
 }
 </style>
 

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="banner">
     <div id="carouselExampleAutoplaying" class="headerbanner carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
@@ -71,5 +71,9 @@
   @media(max-width:960px) {
     display: block;
   }
+}
+
+.banner {
+  margin-top: 90px;
 }
 </style>

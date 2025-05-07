@@ -2,35 +2,53 @@
   <LoadingElement :active="isLoading" />
   <div class="container">
     <div class="productmore">
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb"><!-- 麵包屑 -->
-          <li class="breadcrumb-item"><router-link to="/productlist/allproducts">所有商品</router-link></li>
-          <li class="breadcrumb-item active" aria-current="page">{{ product.title }}</li>
-        </ol>
-      </nav>
       <div class="row justify-content-center">
-        <article class="col-md-7">
-          <h2>{{ product.title }}</h2>
-          <img :src="product.imageUrl" alt="" class="img-fluid mb-3" width="600">
-        </article>
-        <div class="col-md-5">
-          <del class="h6">原價 {{ $filters.currency(product.origin_price) }} 元</del>
-          <div class="h5">NT {{ $filters.currency(product.price) }} 元</div>
-          <div class="productdes">{{ product.description }}</div>
-          <div ref="textContent"></div>
-          <input type="number" class="mb-3 form-control" aria-label="productqty" min="1" v-model="qty" placeholder="數量">
-          <button type="button" class="btn btn-outline-danger " @click="addToCart(product.id)">
-            加到購物車
-          </button>
-          <button class="btn btn-outline-danger" @click="toggleFavorite(product)">
-            <i class="bi bi-heart" v-if="!isFavorite(product.id)"></i>
-            <i class="bi bi-heart-fill" v-else></i>
-          </button>
+        <div class="col-md-10 col-12">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb"><!-- 麵包屑 -->
+              <li class="breadcrumb-item"><router-link to="/" class="breadcrumb-item-link">首頁</router-link></li>
+              <li class="breadcrumb-item"><router-link to="/productlist/allproducts"
+                  class="breadcrumb-item-link">所有商品</router-link></li>
+              <li class="breadcrumb-item active" aria-current="page">{{ product.title }}</li>
+            </ol>
+          </nav>
+          <div class="row justify-content-center">
+            <article class="col-md-6">
+              <img :src="product.imageUrl" alt="" class="img-fluid mb-3" width="600">
+            </article>
+            <div class="col-md-6">
+              <h2>{{ product.title }}</h2>
+              <div class="productdes">{{ product.description }}</div>
+              <div ref="textContent"></div>
+              <del class="h6">原價 {{ $filters.currency(product.origin_price) }} 元</del>
+              <div class="h5 mb-3">NT {{ $filters.currency(product.price) }} 元</div>
+              <div class="d-flex bd-highlight">
+                <div class="p-1 flex-grow-1 bd-highlight">
+                  <div class="d-flex align-items-center mb-3">
+                    <div class="cart-icons btn btn-light" @click="qtyAdjust(-1)">-</div>
+                    <div class="cartqtynum text-center">{{ qty }}</div>
+                    <button class="cart-icons btn btn-light" @click="qtyAdjust(1)">+</button>
+                  </div>
+                </div>
+                <div class="p-1 bd-highlight">
+                  <button type="button" class="btn btn-outline-danger" @click="addToCart(product.id)">
+                    加到購物車
+                  </button>
+                </div>
+                <div class="p-1 bd-highlight">
+                  <button class="btn btn-outline-danger" @click="toggleFavorite(product)">
+                    <i class="bi bi-heart" v-if="!isFavorite(product.id)"></i>
+                    <i class="bi bi-heart-fill" v-else></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="relatedproducts">
+  <div class="relatedproducts" v-if="filterProducts.length > 1">
     <div class="container">
       <div class="row justify-content-md-center">
         <h3>你可能感興趣的</h3>
@@ -103,7 +121,7 @@
             </div>
             <div class="notify-box">
               <div class="notify-boxtitle">- 貨到付款</div>
-              <p>超商或宅配取貨付款。 請注意，付款費用會根據產品價格而有所不同。</p>
+              <p>請注意，付款費用會根據產品價格而有所不同。</p>
             </div>
           </div>
         </div>
@@ -135,9 +153,18 @@ h3 {
   font-weight: bold;
 }
 
+.breadcrumb-item-link {
+  color: #7030a0;
+}
+
+article {
+  padding: 0 1em;
+}
+
 .productmore {
   padding-top: 1em;
   margin-bottom: 2em;
+  margin-top: 120px;
 
   @media(max-width: 960px) {
     padding: 1em 1em 0 1em;
@@ -151,6 +178,16 @@ h3 {
   @media(max-width: 960px) {
     margin-top: 2rem;
   }
+}
+
+.cart-icons {
+  margin-right: 0;
+}
+
+.cartqtynum {
+  padding: 6px 0.5em;
+  min-width: 50px;
+  border: solid 1px #eee;
 }
 
 .notify {
@@ -204,8 +241,16 @@ button {
   margin-bottom: 1.5em;
 }
 
+.product_title {
+  color: #777;
+  font-weight: bold;
+  font-size: 1em;
+  line-height: 1.3em;
+}
+
 .product_img {
   width: 100%;
+  padding: 0 1em;
 }
 
 .product_img img {
@@ -245,7 +290,7 @@ button {
 }
 
 .product_price {
-  font-size: 1.3em;
+  font-size: 1em;
   font-weight: bold;
   color: blueviolet;
 }
@@ -265,10 +310,6 @@ button {
 .relatedproducts h3 {
   margin-bottom: 1.5em;
   color: #7030a0;
-}
-
-.productbox {
-  padding: 1em;
 }
 </style>
 
@@ -339,6 +380,15 @@ export default {
     },
     getRelatedProduct(id) {
       this.$router.push(`/productlist/product/${id}`); // 點擊相關商品後，將id帶入路由
+    },
+    qtyAdjust(num) {
+      if (num === 1) {
+        this.qty += 1;
+      } else if (this.qty === 1) {
+        this.qty = 1;
+      } else {
+        this.qty -= 1;
+      }
     },
     addToCart(id) {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;

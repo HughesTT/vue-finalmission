@@ -13,7 +13,7 @@
 
 <style lang="scss">
 body {
-  background: #eee;
+  background: #fff;
 }
 
 .dashboard {

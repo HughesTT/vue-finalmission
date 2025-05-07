@@ -27,7 +27,7 @@
                   </li>
                 </ul>
               </td>
-              <td>{{ item.total }}</td>
+              <td>{{ $filters.currency(item.total) }}</td>
               <td>
                 <div class="form-check form-switch">
                   <label :for="`paidSwitch${item.id}`" class="form-check-label">
@@ -126,8 +126,14 @@ export default {
         const delComponent = this.$refs.delModal;
         delComponent.hideModal();
         console.log(res);
+        this.emitter.emit('update-orders');
       });
     },
+  },
+  mounted() {
+    this.emitter.on('update-orders', () => {
+      this.getOrders();
+    });
   },
   created() {
     this.getOrders();

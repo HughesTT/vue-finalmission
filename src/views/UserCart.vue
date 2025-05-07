@@ -9,14 +9,19 @@
             <table class="table align-middle">
               <thead>
                 <tr>
+                  <th width="50"></th>
                   <th scope="col">商品名稱 / 圖片</th>
                   <th scope="col" width="90">數量</th>
                   <th scope="col" class="text-end">價格</th>
-                  <th width="50"></th>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="item in cart.carts" :key="item.id">
+                  <td class="text-center">
+                    <button class="btn btn-outline-danger btn-sm text-center" @click="removeCartItem(item.id)">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </td>
                   <td>
                     <img :src="item.product.imageUrl" alt="" class="img-fluid" width="120">
                     {{ item.product.title }}
@@ -31,22 +36,16 @@
                   <td class="text-end">
                     ${{ $filters.currency(item.final_total) }}
                   </td>
-                  <td class="text-end">
-                    <button class="btn btn-outline-danger btn-sm text-center" @click="removeCartItem(item.id)">
-                      <i class="bi bi-trash"></i>
-                    </button>
-                  </td>
                 </tr>
                 <tr>
-                  <td colspan="1"></td>
+                  <td colspan="2"></td>
                   <td class="text-end">總計</td>
                   <td class="text-end">${{ $filters.currency(cart.final_total) }}</td>
-                  <td></td>
                 </tr>
               </tbody>
             </table>
             <div class="d-flex justify-content-end">
-              <router-link to="/user/payment" class="btn btn-danger">填寫收件資訊</router-link>
+              <router-link to="/user/payment" class="btn btn-danger">結帳去</router-link>
             </div>
           </template>
           <template v-else>
@@ -109,7 +108,7 @@
             </div>
             <div class="notify-box">
               <div class="notify-boxtitle">- 貨到付款</div>
-              <p>超商或宅配取貨付款。 請注意，付款費用會根據產品價格而有所不同。</p>
+              <p>請注意，付款費用會根據產品價格而有所不同。</p>
             </div>
           </div>
         </div>
@@ -118,7 +117,7 @@
   </div>
 </template>
 
-<style>
+<style lang="scss">
 h3 {
   font-weight: bold;
   color: purple;
@@ -135,10 +134,22 @@ h3 {
   color: #fff;
   padding: 0.5em 1em;
   border-radius: 30px;
+  text-decoration: none;
 }
 
 .userfavorite {
-  padding: 1em 0 5em 0;
+  min-height: 200px;
+  padding: 0 1em 0 1em;
+  margin-top: 150px;
+  margin-bottom: 5em;
+
+  @media(max-width:960px) {
+    margin-top: 100px;
+  }
+}
+
+table {
+  border: solid 1px #777;
 }
 
 .notify {
@@ -163,6 +174,7 @@ h3 {
   font-size: 1.3em;
   text-align: center;
   margin-bottom: 1em;
+  height: 2.5em;
 }
 
 .notify-border {
@@ -250,6 +262,7 @@ export default {
   },
   created() {
     this.getCart();
+    this.scrollBehavior();
   },
 };
 </script>
