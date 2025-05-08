@@ -12,7 +12,15 @@
           </div>
         </div>
         <div class="col-md-3 col-12 footer_section">
-          <div class="foot_title">社群帳號</div>
+          <div class="foot_title">Service</div>
+          <div class="foot_subtitle">service@bolbydigital.com.tw</div>
+          <div class="foot_subtitle">+886 2 8787-0857</div>
+          <div class="foot_subtitle">
+            <router-link to="/backstage">登入管理</router-link>
+          </div>
+        </div>
+        <div class="col-md-3 col-12 footer_section">
+          <div class="foot_title">Follow</div>
           <div class="socialicon">
             <i class="bi bi-instagram"></i>
             <i class="bi bi-twitter-x"></i>
@@ -21,14 +29,7 @@
             <i class="bi bi-youtube"></i>
           </div>
         </div>
-        <div class="col-md-3 col-12 footer_section">
-          <div class="foot_title">客服與維修</div>
-          <div class="foot_subtitle">service@bolbydigital.com.tw</div>
-          <div class="foot_subtitle">+886 2 8787-0857</div>
-          <div class="foot_subtitle">
-            <router-link to="/backstage">登入管理</router-link>
-          </div>
-        </div>
+
         <div class="col-md-12 col-12 footer_section cright">
           ©Bolby Digital Inc. ALL RIGHTS RESERVED
         </div>
