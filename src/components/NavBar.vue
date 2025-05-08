@@ -100,11 +100,9 @@ export default {
   mounted() {
     emitter.on('update-cart', () => {
       this.getCart();
-      console.log(`購物車${this.cartNum}`);
     });
     emitter.on('update-favorite', () => {
       this.getFavorite();
-      console.log(`追蹤清單${this.favNum}`);
     });
   },
   created() {

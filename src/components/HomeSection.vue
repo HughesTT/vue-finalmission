@@ -34,7 +34,7 @@
 }
 
 section {
-  margin: 5em 0;
+  margin: 5em 0 8em 0;
 
   @media(max-width:960px) {
     margin: 1em 0;

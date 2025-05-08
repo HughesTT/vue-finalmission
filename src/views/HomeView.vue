@@ -4,6 +4,7 @@
     <NavBar />
     <HeaderBanner />
     <HomeSection />
+    <CouponView />
     <HomesectionOnsale />
     <Footer />
   </div>
@@ -16,6 +17,7 @@
 import NavBar from '@/components/NavBar.vue';
 import HeaderBanner from '@/components/HeaderBanner.vue';
 import HomeSection from '@/components/HomeSection.vue';
+import CouponView from '@/components/CouponView.vue';
 import HomesectionOnsale from '@/components/HomesectionOnsale.vue';
 import Footer from '@/components/FooterView.vue';
 
@@ -31,6 +33,7 @@ export default {
     HeaderBanner,
     Footer,
     HomeSection,
+    CouponView,
     HomesectionOnsale,
   },
 };

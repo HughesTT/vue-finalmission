@@ -35,7 +35,7 @@ h3 {
 }
 
 .onsaleproducts {
-  margin: 150px 0 3em 0;
+  margin: 5em 0 3em 0;
 
   @media(max-width:960px) {
     margin-top: 60px;
