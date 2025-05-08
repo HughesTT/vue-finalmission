@@ -90,6 +90,8 @@ export default {
         if (res.data.success) {
           this.orders = res.data.orders;
           this.pagination = res.data.pagination;
+          console.log(res);
+          console.log(this.orders);
         }
       });
     },
@@ -110,6 +112,7 @@ export default {
       this.$http.put(api, { data: paid }).then((res) => {
         this.isLoading = false; // 停止loading動態
         this.getOrders(this.currentPage); // 取得目前頁面的訂單資料
+        console.log(res);
       });
     },
     openDelOrderModal(item) {
@@ -122,6 +125,7 @@ export default {
       this.$http.delete(api).then((res) => {
         const delComponent = this.$refs.delModal;
         delComponent.hideModal();
+        console.log(res);
         this.emitter.emit('update-orders');
       });
     },
