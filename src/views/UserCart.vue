@@ -231,7 +231,6 @@ export default {
       this.$http.get(url).then((res) => {
         this.cart = res.data.data;
         this.isLoading = false;
-        console.log(this.cart);
         emitter.emit('update-cart');
       });
     },
@@ -244,7 +243,6 @@ export default {
         qty: item.qty,
       };
       this.$http.put(url, { data: cart }).then((res) => {
-        console.log(res);
         this.status.loadingItem = ''; // 更新後清除id
         this.getCart(); // 變更數量後，重新取得購物車資料
       });

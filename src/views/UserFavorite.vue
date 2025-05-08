@@ -286,7 +286,6 @@ export default {
         qty: 1,
       };
       this.$http.post(url, { data: cart }).then((res) => {
-        console.log(res.data);
         this.$httpMessageState(res, '加入購物車');
         this.status.loadingItem = '';
         emitter.emit('update-cart');
@@ -310,12 +309,10 @@ export default {
       if (!hasFavorite) { // 若不存在於favorite陣列
         this.favorite.push(item); // 將其新增到favorite陣列中
         localStorage.setItem('favorite', JSON.stringify(this.favorite)); // 本機儲存的物件轉換為JSON字串
-        console.log(`${item.title} 加入追蹤`);
       } else { // 若已存在於favorite陣列
         const delItem = this.favorite.find((fav) => fav.id === toggleid); // 宣告delItem，若favorite有點選物件的id
         this.favorite.splice(this.favorite.indexOf(delItem), 1); // 將該id從陣列中刪除
         localStorage.setItem('favorite', JSON.stringify(this.favorite)); // 將favorite轉換為JSON字串
-        console.log(`${item.title} 取消追蹤`);
       }
       this.getFavorite(); // 每次點選按鈕重新讀取追蹤清單
       emitter.emit('update-favorite');

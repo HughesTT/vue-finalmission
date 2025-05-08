@@ -281,7 +281,6 @@ export default {
       this.$http.get(url).then((res) => {
         this.cart = res.data.data;
         this.isLoading = false;
-        console.log(this.cart);
         emitter.emit('update-cart');
       });
     },
@@ -309,7 +308,6 @@ export default {
     payOrder() {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/pay/${this.orderId}`;
       this.$http.post(url).then((res) => {
-        console.log(res);
         if (res.data.success) { // 若回傳成功，顯示完成付款資訊
           this.$httpMessageState(res, '付款');
         }

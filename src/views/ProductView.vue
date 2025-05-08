@@ -207,7 +207,6 @@ export default {
         qty: 1,
       };
       this.$http.post(url, { data: cart }).then((res) => {
-        console.log(res.data);
         this.$httpMessageState(res, '加入購物車');
         this.status.loadingItem = '';
         emitter.emit('update-cart');
@@ -221,7 +220,6 @@ export default {
         this.isLoading = false;
         if (res.data.success) {
           this.cart = res.data.data.carts;
-          console.log(this.cart);
         }
       });
     },

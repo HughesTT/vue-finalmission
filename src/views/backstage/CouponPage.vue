@@ -88,7 +88,6 @@ export default {
       this.$http.get(url, this.tempProduct).then((res) => {
         this.coupons = res.data.coupons;
         this.isLoading = false;
-        console.log(this.coupons);
       });
     },
     updateCoupon(tempCoupon) {
@@ -97,7 +96,6 @@ export default {
       if (this.isNew) {
         const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupon`;
         this.$http.post(url, { data: tempCoupon }).then((res) => {
-          console.log(res, tempCoupon);
           this.$httpMessageState(res, '新增優惠券'); // 顯示推播
           this.getCoupons(); // 重新讀取優惠券
           this.$refs.couponModal.hideModal(); // 將modal關閉

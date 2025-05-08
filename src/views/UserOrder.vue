@@ -115,7 +115,6 @@ export default {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order/${this.orderId}`;
       this.isLoading = true;
       this.$http.get(url).then((res) => {
-        console.log(res);
         this.isLoading = false;
         if (res.data.success) { // 如果成功取得資料
           this.order = res.data.order; // 將取得的資料存入order
@@ -128,7 +127,6 @@ export default {
   },
   created() {
     this.orderId = this.$route.params.orderId;
-    console.log(this.orderId);
     this.getOrder();
   },
 };
