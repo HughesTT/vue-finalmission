@@ -5,6 +5,18 @@
       <div class="row justify-content-center">
         <div class="col-md-8">
           <h3><i class="bi bi-cart-check"></i> 購物車</h3>
+          <div class="paymentschedule">
+            <div class="row">
+              <div class="col-4 payment-step text-center">
+                <i class="bi bi-1-circle-fill"></i> 填寫訂購資料
+              </div>
+              <div class="col-4 payment-step-dash">
+              </div>
+              <div class="col-4 payment-step-off text-center">
+                <i class="bi bi-2-circle"></i> 填寫訂購資料
+              </div>
+            </div>
+          </div>
           <template v-if="cart.carts && cart.carts.length > 0">
             <table class="table align-middle">
               <thead>
@@ -176,10 +188,28 @@
   </div>
 </template>
 
-<style>
+<style lang="scss">
 h3 {
   font-weight: bold;
   color: purple;
+}
+
+.paymentschedule {
+  margin: 2em 0;
+
+  .payment-step {
+    color: purple;
+    font-size: 1.2em;
+  }
+
+  .payment-step-dash {
+    background: url(../assets/img/dash.png) repeat-x center;
+  }
+
+  .payment-step-off {
+    color: #999;
+    font-size: 1.2em;
+  }
 }
 
 .userfavorite {

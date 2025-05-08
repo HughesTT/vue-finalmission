@@ -4,6 +4,18 @@
     <div class="userorder row justify-content-center">
       <div class="col-md-8 table-responsive">
         <h3><i class="bi bi-cart-check"></i> 訂單資訊</h3>
+        <div class="paymentschedule">
+          <div class="row">
+            <div class="col-4 payment-step-off text-center">
+              <i class="bi bi-1-circle"></i> 填寫訂購資料
+            </div>
+            <div class="col-4 payment-step-dash">
+            </div>
+            <div class="col-4 payment-step text-center">
+              <i class="bi bi-2-circle-fill"></i> 訂購完成
+            </div>
+          </div>
+        </div>
         <p>購買商品如下</p>
         <table class="table align-middle">
           <thead>
@@ -95,6 +107,24 @@
   td {
     border: solid 1px #ddd;
     padding: 5px;
+  }
+}
+
+.paymentschedule {
+  margin: 2em 0;
+
+  .payment-step {
+    color: purple;
+    font-size: 1.2em;
+  }
+
+  .payment-step-dash {
+    background: url(../assets/img/dash.png) repeat-x center;
+  }
+
+  .payment-step-off {
+    color: #999;
+    font-size: 1.2em;
   }
 }
 </style>
