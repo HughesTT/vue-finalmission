@@ -7,7 +7,7 @@
         <div class="paymentschedule">
           <div class="row">
             <div class="col-4 payment-step-off text-center">
-              <i class="bi bi-1-circle"></i> 填寫訂購資料
+              <i class="bi bi-1-circle"></i> 填寫訂購/付款資料
             </div>
             <div class="col-4 payment-step-dash">
             </div>

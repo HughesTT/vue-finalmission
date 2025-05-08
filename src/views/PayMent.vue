@@ -8,12 +8,12 @@
           <div class="paymentschedule">
             <div class="row">
               <div class="col-4 payment-step text-center">
-                <i class="bi bi-1-circle-fill"></i> 填寫訂購資料
+                <i class="bi bi-1-circle-fill"></i> 填寫訂購/付款資料
               </div>
               <div class="col-4 payment-step-dash">
               </div>
               <div class="col-4 payment-step-off text-center">
-                <i class="bi bi-2-circle"></i> 填寫訂購資料
+                <i class="bi bi-2-circle"></i> 訂購完成
               </div>
             </div>
           </div>
