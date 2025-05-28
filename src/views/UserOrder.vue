@@ -83,9 +83,7 @@
   margin-top: 120px;
   margin-bottom: 2em;
 
-  @media(max-width:960px) {
-    padding-top: 150px;
-  }
+  @media(max-width:960px) {}
 
   h3 {
     color: purple;
