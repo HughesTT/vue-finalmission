@@ -94,7 +94,6 @@ export default {
           if (res.data.success) {
             this.products = res.data.products;
             this.pagination = res.data.pagination;
-            console.log(res.data);
           }
         });
     },
@@ -118,7 +117,6 @@ export default {
       }
       const productComponent = this.$refs.productModal;
       this.$http[httpMethod](api, { data: this.tempProduct }).then((res) => {
-        console.log(res);
         productComponent.hideModal();
         if (res.data.success) {
           this.getProduct();
@@ -143,7 +141,7 @@ export default {
     delProduct() {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${this.tempProduct.id}`;
       this.$http.delete(url).then((res) => {
-        console.log(res.data);
+        this.$httpMessageState(res, '刪除商品');
         const delComponent = this.$refs.delModal;
         delComponent.hideModal(); // 刪除後關閉modal
         this.getProduct(); // 重新取得商品列表

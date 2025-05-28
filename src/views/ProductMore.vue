@@ -12,22 +12,22 @@
               <li class="breadcrumb-item active" aria-current="page">{{ product.title }}</li>
             </ol>
           </nav>
-          <div class="row justify-content-center">
+          <div class="row">
             <article class="col-md-6">
-              <img :src="product.imageUrl" alt="" class="img-fluid mb-3" width="600">
+              <img :src="product.imageUrl" alt="產品照" class="img-fluid mb-3" width="600">
             </article>
             <div class="col-md-6">
               <h2>{{ product.title }}</h2>
               <div class="productdes">{{ product.description }}</div>
-              <div ref="textContent"></div>
               <del class="h6">原價 {{ $filters.currency(product.origin_price) }} 元</del>
               <div class="h5 mb-3">NT {{ $filters.currency(product.price) }} 元</div>
               <div class="d-flex bd-highlight">
                 <div class="p-1 flex-grow-1 bd-highlight">
                   <div class="d-flex align-items-center mb-3">
-                    <div class="cart-icons btn btn-light" @click="qtyAdjust(-1)">-</div>
+                    <button class="cart-icons qtyadjustbtn" @click="qtyAdjust(-1)">-
+                    </button>
                     <div class="cartqtynum text-center">{{ qty }}</div>
-                    <button class="cart-icons btn btn-light" @click="qtyAdjust(1)">+</button>
+                    <button class="cart-icons qtyadjustbtn" @click="qtyAdjust(1)">+</button>
                   </div>
                 </div>
                 <div class="p-1 bd-highlight">
@@ -44,6 +44,50 @@
               </div>
             </div>
           </div>
+          <div class="productinfo">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
+                  role="tab" aria-controls="home" aria-selected="true">介紹</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
+                  role="tab" aria-controls="profile" aria-selected="false">規格</button>
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <div class="product-details">
+                  <div class="row">
+                    <div class="col-md-6 col-12">
+                      <img v-if="product.images && product.images.length > 1" :src="product.images[0]" alt="產品照"
+                        class="img-fluid mb-3" />
+                    </div>
+                    <div class="col-md-6 col-12">
+                      <div class="product-content" ref="textContent"></div>
+                    </div>
+                    <div class="col-md-6 col-12 defaultblock">
+                      <img src="../assets/img/defaultblock.jpg" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-md-6 col-12">
+                      <img v-if="product.images && product.images.length > 1" :src="product.images[1]" alt="產品照"
+                        class="img-fluid mb-3" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="product-details">
+                  <div class="specification">
+                    <img src="../assets/img/specification.png" alt="產品規格" class="img-fluid" />
+                  </div>
+                  <div class="specification_mobi">
+                    <img src="../assets/img/specification_mobi.png" alt="產品規格" class="img-fluid" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -56,15 +100,15 @@
           <a href="#" @click.prevent="getRelatedProduct(item.id)">
             <div class="product_img">
               <div class="morebox">
-                <div class="morebtn">more</div>
+                <div class="morebtn">更多資訊</div>
               </div>
-              <img :src="item.imageUrl" class="img-fluid" alt="image">
+              <img :src="item.imageUrl" class="img-fluid" alt="產品照">
             </div>
             <div class="product_title">
               {{ item.title }}
             </div>
             <div class="product_price">
-              $ {{ $filters.currency(item.price) }}
+              NT ${{ $filters.currency(item.price) }}
             </div>
           </a>
         </div>
@@ -117,7 +161,7 @@
           <div class="notify-content">
             <div class="notify-box">
               <div class="notify-boxtitle">- 信用卡付款</div>
-              <img src="../assets/img/creditcard.png" alt="" class="img-fluid" width="120">
+              <img src="../assets/img/creditcard.png" alt="發卡組織" class="img-fluid" width="120">
             </div>
             <div class="notify-box">
               <div class="notify-boxtitle">- 貨到付款</div>
@@ -130,7 +174,7 @@
   </div>
 </template>
 
-<style>
+<style lang="scss">
 a {
   text-decoration: none;
 }
@@ -138,6 +182,7 @@ a {
 h2,
 h3 {
   font-weight: bold;
+  margin-bottom: 1em;
 }
 
 .h5 {
@@ -172,22 +217,82 @@ article {
   }
 }
 
+.productinfo_title {
+  width: 300px;
+  margin-bottom: 3em;
+
+  @media(max-width:960px) {
+    width: 250px;
+    margin-top: 5em;
+    ;
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
+.product-details {
+  margin-bottom: 3em;
+}
+
+.product-content {
+  margin-bottom: 150px;
+  margin-top: 4em;
+
+  @media(max-width: 960px) {
+    margin-left: -2em;
+    margin-bottom: 4em;
+  }
+
+  p {
+    font-size: 1.1em;
+    margin-left: 2em;
+
+    @media(max-width: 960px) {
+      font-size: 0.9em;
+    }
+  }
+}
+
+.other_p_img img {
+  margin-top: 1em;
+}
+
+.defaultblock {
+  @media(max-width: 960px) {
+    display: none;
+  }
+}
+
 .productdes {
   margin-bottom: 1.5em;
+  font-size: 1.1em;
 
   @media(max-width: 960px) {
     margin-top: 2rem;
   }
 }
 
+.purplebg {
+  background: #9e7cd9;
+  width: 100%;
+  height: 100%;
+}
+
 .cart-icons {
   margin-right: 0;
+}
+
+.qtyadjustbtn {
+  border: none;
+  width: 30px;
+  height: 38px;
 }
 
 .cartqtynum {
   padding: 6px 0.5em;
   min-width: 50px;
-  border: solid 1px #eee;
 }
 
 .notify {
@@ -272,7 +377,7 @@ button {
   left: 47%;
   transform: translate(-50%, -50%);
   transition: all 0.3s ease-in-out;
-  font-size: 1.5em;
+  font-size: 1.2em;
   padding: 0.5em;
   border-radius: 5px;
   opacity: 0;
@@ -310,6 +415,49 @@ button {
 .relatedproducts h3 {
   margin-bottom: 1.5em;
   color: #7030a0;
+}
+
+.nav-tabs .nav-link,
+.nav-tabs .nav-link:focus,
+.nav-tabs .nav-link:hover,
+.nav-tabs .nav-link .active {
+  border: none !important;
+  color: #7030a0 !important;
+}
+
+#myTab {
+  position: sticky !important;
+  top: 88px !important;
+  overflow: hidden;
+  background: #fff;
+
+  @media(max-width:960px) {
+    top: 75px !important;
+  }
+}
+
+.productinfo {
+  @media(max-width:960px) {
+    margin-top: 3em;
+  }
+}
+
+.product-details {
+  margin-top: 4em;
+}
+
+.specification {
+  @media(max-width: 960px) {
+    display: none;
+  }
+}
+
+.specification_mobi {
+  display: none;
+
+  @media(max-width: 960px) {
+    display: block;
+  }
 }
 </style>
 

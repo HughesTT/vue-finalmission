@@ -12,7 +12,7 @@
           </div>
         </div>
         <div class="col-md-5">
-          <img src="../assets/img/serviceinfo.jpg" alt="" class="img-fluid">
+          <img src="../assets/img/serviceinfo.jpg" alt="serviceinfo照" class="img-fluid">
         </div>
       </div>
     </div>
@@ -62,7 +62,7 @@
         <div class="notify-content">
           <div class="notify-box">
             <div class="notify-boxtitle">- 信用卡付款</div>
-            <img src="../assets/img/creditcard.png" alt="" class="img-fluid" width="120">
+            <img src="../assets/img/creditcard.png" alt="發卡組織" class="img-fluid" width="120">
           </div>
           <div class="notify-box">
             <div class="notify-boxtitle">- 貨到付款</div>
@@ -80,12 +80,13 @@ body {
   background: #fff;
 }
 
-.container {
-  margin-top: 2rem;
-}
-
 .serviceinfo {
   padding: 1em 0 5em 0;
+  margin-top: 135px;
+
+  @media(max-width: 960px) {
+    margin-top: 90px;
+  }
 
   h3 {
     font-weight: bold;

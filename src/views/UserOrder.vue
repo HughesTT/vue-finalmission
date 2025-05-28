@@ -4,16 +4,21 @@
     <div class="userorder row justify-content-center">
       <div class="col-md-8 table-responsive">
         <h3><i class="bi bi-cart-check"></i> 訂單資訊</h3>
-        <div class="paymentschedule">
-          <div class="row">
-            <div class="col-4 payment-step-off text-center">
-              <i class="bi bi-1-circle"></i> 訂購資料 / 付款方式
-            </div>
-            <div class="col-4 payment-step-dash">
-            </div>
-            <div class="col-4 payment-step text-center">
-              <i class="bi bi-2-circle-fill"></i> 訂購完成
-            </div>
+        <div class="paymentschedule justify-content-center">
+          <div class="payment-step-off text-center">
+            <i class="bi bi-1-circle"></i> 確認商品
+          </div>
+          <div class="payment-step text-center">
+            <img src="../assets/img/dash.png" alt="image">
+          </div>
+          <div class="payment-step-off text-center">
+            <i class="bi bi-2-circle"></i> 填寫結帳資訊
+          </div>
+          <div class="payment-step text-center">
+            <img src="../assets/img/dash.png" alt="image">
+          </div>
+          <div class="payment-step text-center">
+            <i class="bi bi-3-circle-fill"></i> 訂購完成
           </div>
         </div>
         <p>購買商品如下</p>
@@ -21,7 +26,7 @@
           <thead>
             <th>品名</th>
             <th class="text-end">數量</th>
-            <th class="text-end">單價</th>
+            <th class="text-end">價格</th>
           </thead>
           <tbody>
             <tr v-for="item in order.products" :key="item.id">
@@ -33,7 +38,7 @@
           <tfoot>
             <tr>
               <td colspan="2" class="text-end" style="background: #eee;">總計</td>
-              <td class="text-end">${{ $filters.currency(order.total) }}</td>
+              <td class="text-end">NT ${{ $filters.currency(order.total) }}</td>
             </tr>
           </tfoot>
         </table>
@@ -65,7 +70,9 @@
             </tr>
           </tbody>
         </table>
-        <button class="btn btn-primary" @click="gotoProduct">繼續購物</button>
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-purple" @click="gotoProduct">繼續購物</button>
+        </div>
       </div>
     </div>
   </div>
@@ -96,6 +103,7 @@
 
   th {
     min-width: 250px;
+    color: #333;
     background: #dacce6;
     padding: 5px;
 
@@ -112,10 +120,16 @@
 
 .paymentschedule {
   margin: 2em 0;
+  display: flex;
 
   .payment-step {
     color: purple;
-    font-size: 1.2em;
+    font-size: 1em;
+    margin: 0 5px;
+
+    @media(max-width: 960px) {
+      font-size: 0.9em;
+    }
   }
 
   .payment-step-dash {
@@ -124,7 +138,12 @@
 
   .payment-step-off {
     color: #999;
-    font-size: 1.2em;
+    font-size: 1em;
+    margin: 0 5px;
+
+    @media(max-width: 960px) {
+      font-size: 0.9em;
+    }
   }
 }
 </style>

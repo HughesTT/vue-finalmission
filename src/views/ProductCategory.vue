@@ -5,7 +5,7 @@
       <h3>全系列耳機</h3>
       <div class="categorybtn">
         <router-link to="/productlist/allproducts">
-          <button class="btn btn-outline-secondary" :class="{ 'active': category === 'all' }">全部商品</button>
+          <button class="btn btn-outline-secondary">全部商品</button>
         </router-link>
         <button class="btn btn-outline-secondary" :class="{ 'active': category === 'gaming' }"
           @click.prevent="toCategory('gaming')">電競</button>
@@ -19,6 +19,7 @@
           @click.prevent="toCategory('music-glasses')">音訊眼鏡
         </button>
       </div>
+
       <div class="row">
         <div class="productbox col-md-3 col-6" v-for="item in products" :key="item.id">
           <a href="#" @click.prevent="getProduct(item.id)">
@@ -132,7 +133,6 @@ h3 {
   @media(max-width: 960px) {
     top: 100px;
     left: 45%;
-    font-size: 0.9em;
   }
 }
 
@@ -200,15 +200,29 @@ export default {
       category: 'all', // 商品分類
     };
   },
+  watch: {
+    '$route.params.category': {
+      handler() { // 監聽路由參數變化，重新獲取商品列表
+        this.products = []; // 清空商品列表
+        this.getProducts(); // 重新獲取商品列表
+      },
+      deep: true,
+    },
+  },
   methods: {
     getProducts() {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products/all`;
       this.isLoading = true;
       this.$http.get(url).then((res) => {
-        this.isLoading = false;
         if (res.data.success) {
-          this.products = res.data.products.reverse();
+          this.category = this.$route.params.category; // 根據路由參數取得分類，按鈕會根據此參數改變樣式
+          if (!this.$route.params.category) { // 若沒有指定分類，則顯示全部商品
+            this.products = res.data.products.reverse();
+          } else {
+            this.products = res.data.products.filter((item) => item.category === this.$route.params.category);
+          }
         }
+        this.isLoading = false;// 讀取完指定分類商品後才關閉loading動態
       });
     },
     getProduct(id) {

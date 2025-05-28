@@ -6,15 +6,15 @@
       </a>
       <ul class="nav justify-content-end">
         <li class="nav-item">
-          <router-link to="/aboutus" class="nav-link" active-class="active">關於我們</router-link>
-        </li>
-        <li class="nav-item">
           <router-link to="/productlist/allproducts" class="nav-link" active-class="active">所有商品</router-link>
         </li>
         <li class="nav-item">
+          <router-link to="/aboutus" class="nav-link" active-class="active">關於我們</router-link>
+        </li>
+        <li class="nav-item">
           <router-link to="/user/favorite" class="nav-link" active-class="active">
-            <div class="bubleF" v-if="favNum !== 0">{{ favNum }}</div>
-            <i class="bi bi-heart"></i>
+            <i class="bi bi-heart" v-if="favNum < 1"></i>
+            <i class="bi bi-heart-fill" v-else></i>
           </router-link>
         </li>
         <li class="nav-item">
@@ -34,20 +34,26 @@ nav {
   z-index: 99;
 }
 
+.navbar-brand {
+  @media(max-width:960px) {
+    width: 62px
+  }
+}
+
 .nav-link {
   font-size: 1.2rem;
   font-weight: bold;
   color: #7030a0;
   text-decoration: none;
   background-image: linear-gradient(#7030a0, #7030a0);
-  background-size: 0% 0.15em;
+  background-size: 0% 0.1em;
   background-position-y: 100%;
   background-position-x: 100%;
   background-repeat: no-repeat;
-  transition: background-size 0.2s ease-in-out;
+  transition: background-size 0.3s ease-in-out;
 
   @media(max-width:960px) {
-    font-size: 1.1em;
+    font-size: 1em;
   }
 }
 

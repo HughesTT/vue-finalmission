@@ -90,8 +90,6 @@ export default {
         if (res.data.success) {
           this.orders = res.data.orders;
           this.pagination = res.data.pagination;
-          console.log(res);
-          console.log(this.orders);
         }
       });
     },
@@ -110,9 +108,9 @@ export default {
       };
       // 使用put方法傳送資料
       this.$http.put(api, { data: paid }).then((res) => {
+        this.$httpMessageState(res, '更新付款狀態');
         this.isLoading = false; // 停止loading動態
         this.getOrders(this.currentPage); // 取得目前頁面的訂單資料
-        console.log(res);
       });
     },
     openDelOrderModal(item) {
@@ -123,9 +121,9 @@ export default {
     delOrder() {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/order/${this.tempOrder.id}`;
       this.$http.delete(api).then((res) => {
+        this.$httpMessageState(res, '刪除訂單');
         const delComponent = this.$refs.delModal;
         delComponent.hideModal();
-        console.log(res);
         this.emitter.emit('update-orders');
       });
     },

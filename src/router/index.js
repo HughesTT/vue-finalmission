@@ -23,13 +23,17 @@ const routes = [
     path: '/productlist',
     component: () => import('../views/ProductList.vue'),
     children: [
-      { // 對應單一產品的資訊頁面
+      { // 全部產品
         path: 'allproducts',
         component: () => import('../views/ProductView.vue'),
       },
-      { // 對應單一產品的資訊頁面
+      { // 對應單一產品
         path: 'product/:productId',
         component: () => import('../views/ProductMore.vue'),
+      },
+      { // 同類別產品
+        path: ':category?',
+        component: () => import('../views/ProductCategory.vue'),
       },
     ],
   },

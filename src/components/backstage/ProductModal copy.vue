@@ -1,4 +1,5 @@
 <template>
+  <LoadingElement :active="isLoading"></LoadingElement>
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
     ref="modal">
     <div class="modal-dialog modal-xl">
@@ -28,19 +29,13 @@
                 <!-- 延伸技巧，多圖 -->
                 <div class="mt-5">
                   <div class="mb-3 input-group">
-                    <input type="file" class="form-control form-control" @change="uploadFiles1" ref="filesInput1">
-                    <button type="button" class="btn btn-outline-danger">
-                      移除
-                    </button>
-                  </div>
-                  <div class="mb-3 input-group">
-                    <input type="file" class="form-control form-control" @change="uploadFiles2" ref="filesInput2">
+                    <input type="url" class="form-control form-control" placeholder="請輸入連結">
                     <button type="button" class="btn btn-outline-danger">
                       移除
                     </button>
                   </div>
                   <div>
-                    <button class="btn btn-outline-primary btn-sm d-block w-100" @click="startUpload">
+                    <button class="btn btn-outline-primary btn-sm d-block w-100">
                       新增圖片
                     </button>
                   </div>
@@ -145,25 +140,14 @@ export default {
     return {
       modal: {},
       tempProduct: {},
-      status: {
-        loadingItem: false,
-      },
     };
   },
   methods: {
     showModal() {
       this.modal.show();
-      this.clearInput(this.$refs.fileInput);
-      this.clearInput(this.$refs.filesInput1);
-      this.clearInput(this.$refs.filesInput2);
     },
     hideModal() {
       this.modal.hide();
-    },
-    clearInput(input) {
-      if (input) {
-        input.value = ''; // 直接操作參數的屬性
-      }
     },
     uploadFile() {
       const uploadedFile = this.$refs.fileInput.files[0];
@@ -171,55 +155,11 @@ export default {
       formData.append('file-to-upload', uploadedFile); // 增加欄位到表單
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/upload`;
       this.$http.post(url, formData).then((res) => {
-        console.log(res.data);
+        this.$httpMessageState(res, '上傳圖片');
         if (res.data.success) {
           this.tempProduct.imageUrl = res.data.imageUrl;
-        } else {
-          console.log(res.data.message);
         }
-      })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-    uploadPost(files) {
-      if (!files) {
-        return;
-      }
-      const formData = new FormData();
-      formData.append('file-to-upload', files);
-
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/upload`;
-      this.$http.post(api, formData).then((res) => {
-        if (res.data.success) {
-          this.tempProduct.imagesUrl.push(res.data.imageUrl);
-        } else {
-          console.log(res.data.message);
-        }
-      })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-    startUpload() {
-      const file1 = this.$refs.filesInput1.files[0];
-      const file2 = this.$refs.filesInput2.files[0];
-
-      if (!file1 && !file2) {
-        alert('請選擇檔案');
-        return;
-      }
-      const upload1 = file1 ? this.uploadPost(file1) : Promise.resolve('not file1');
-      const upload2 = file2 ? this.uploadPost(file2) : Promise.resolve('not file2');
-
-      Promise.all([upload1, upload2]).then(() => {
-        alert('上傳成功');
-        this.clearInput(this.$refs.filesInput1);
-        this.clearInput(this.$refs.filesInput2);
-      })
-        .catch((err) => {
-          console.log(err);
-        });
+      });
     },
   },
   mounted() {

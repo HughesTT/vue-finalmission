@@ -29,6 +29,14 @@
             <i class="bi bi-youtube"></i>
           </div>
         </div>
+        <div class="col-md-3 col-12 footer_section">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="輸入Email訂閱電子報" aria-label="輸入Email訂閱電子報"
+              aria-describedby="button-addon2">
+            <button class="btn btn-outline-light" type="button" id="button-addon2">訂閱</button>
+            <p>訂閱電子報可收到優惠訊息以及最新產品資訊。</p>
+          </div>
+        </div>
 
         <div class="col-md-12 col-12 footer_section cright">
           ©Bolby Digital Inc. ALL RIGHTS RESERVED
@@ -77,5 +85,9 @@ footer {
 
 .socialicon i {
   margin-right: 1em;
+}
+
+.input-group p {
+  margin-top: 10px;
 }
 </style>

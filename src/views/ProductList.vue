@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavBar></NavBar>
-    <router-view />
+    <RouterView />
     <Footer></Footer>
     <ToastMessages />
   </div>

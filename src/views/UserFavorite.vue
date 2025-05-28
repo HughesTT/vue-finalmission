@@ -19,7 +19,7 @@
                     {{ item.title }}
                   </div>
                   <div class="product_price">
-                    $ {{ $filters.currency(item.price) }}
+                    NT ${{ $filters.currency(item.price) }}
                   </div>
                 </a>
                 <div class="btntool">
@@ -94,7 +94,7 @@
           <div class="notify-content">
             <div class="notify-box">
               <div class="notify-boxtitle">- 信用卡付款</div>
-              <img src="../assets/img/creditcard.png" alt="" class="img-fluid" width="120">
+              <img src="../assets/img/creditcard.png" alt="發卡組織" class="img-fluid" width="120">
             </div>
             <div class="notify-box">
               <div class="notify-boxtitle">- 貨到付款</div>

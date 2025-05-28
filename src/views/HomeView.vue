@@ -3,9 +3,9 @@
   <div>
     <NavBar />
     <HeaderBanner />
-    <HomeSection />
-    <CouponView />
     <HomesectionOnsale />
+    <CouponView />
+    <HomeSection />
     <Footer />
   </div>
 </template>

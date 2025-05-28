@@ -27,15 +27,18 @@
                 </div>
                 <img class="img-fluid" :src="tempProduct.imageUrl" alt="">
                 <!-- 延伸技巧，多圖 -->
-                <div class="mt-5">
-                  <div class="mb-3 input-group">
-                    <input type="url" class="form-control form-control" placeholder="請輸入連結">
-                    <button type="button" class="btn btn-outline-danger">
+                <div class="mt-5" v-if="tempProduct.images">
+                  <div v-for="(image, key) in tempProduct.images" class="mb-3 input-group" :key="key">
+                    <input type="url" class="form-control form-control" v-model="tempProduct.images[key]"
+                      placeholder="請輸入連結" />
+                    <button type="button" class="btn btn-outline-danger" @click="tempProduct.images.splice(key, 1)">
                       移除
                     </button>
                   </div>
-                  <div>
-                    <button class="btn btn-outline-primary btn-sm d-block w-100">
+                  <div v-if="
+                    tempProduct.images[tempProduct.images.length - 1] || !tempProduct.images.length
+                  ">
+                    <button class="btn btn-outline-primary btn-sm d-block w-100" @click="tempProduct.images.push('')">
                       新增圖片
                     </button>
                   </div>
@@ -134,6 +137,10 @@ export default {
   watch: {
     product() {
       this.tempProduct = this.product;
+      // 多圖範例，建立圖片連結陣列
+      if (!this.tempProduct.images) {
+        this.tempProduct.images = [];
+      }
     },
   },
   data() {
@@ -155,7 +162,7 @@ export default {
       formData.append('file-to-upload', uploadedFile); // 增加欄位到表單
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/upload`;
       this.$http.post(url, formData).then((res) => {
-        console.log(res.data);
+        this.$httpMessageState(res, '上傳圖片');
         if (res.data.success) {
           this.tempProduct.imageUrl = res.data.imageUrl;
         }

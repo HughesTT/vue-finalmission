@@ -5,62 +5,61 @@
       <div class="row justify-content-center">
         <div class="col-md-8">
           <h3><i class="bi bi-cart-check"></i> 購物車</h3>
-          <div class="paymentschedule">
-            <div class="row">
-              <div class="col-4 payment-step text-center">
-                <i class="bi bi-1-circle-fill"></i> 訂購資料 / 付款方式
+          <template v-if="cart.carts && cart.carts.length > 0">
+            <div class="paymentschedule justify-content-center">
+              <div class="payment-step-off text-center">
+                <i class="bi bi-1-circle-fill"></i> 確認商品
               </div>
-              <div class="col-4 payment-step-dash">
+              <div class="payment-step text-center">
+                <img src="../assets/img/dash.png" alt="image">
               </div>
-              <div class="col-4 payment-step-off text-center">
-                <i class="bi bi-2-circle"></i> 訂購完成
+              <div class="payment-step text-center">
+                <i class="bi bi-2-circle-fill"></i> 填寫結帳資訊
+              </div>
+              <div class="payment-step text-center">
+                <img src="../assets/img/dash.png" alt="image">
+              </div>
+              <div class="payment-step-off text-center">
+                <i class="bi bi-3-circle"></i> 訂購完成
               </div>
             </div>
-          </div>
-          <template v-if="cart.carts && cart.carts.length > 0">
-            <table class="table align-middle">
-              <thead>
-                <tr>
-                  <th scope="col-4">商品名稱 / 圖片</th>
-                  <th scope="col-1" width="90" class="text-center">數量</th>
-                  <th scope="col-2" class="text-end">價格</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="item in cart.carts" :key="item.id">
-                  <td>
-                    <img :src="item.product.imageUrl" alt="" class="img-fluid" width="150">
-                    {{ item.product.title }}
-                  </td>
-                  <td>
-                    <div class="input-gorup input-group-sm text-center">
-                      {{ item.qty }}
+
+            <div class="payment-item">
+              <div class="row">
+                <div class="col-12">
+                  <div class="d-flex align-items-center cart-info" v-for="item in cart.carts" :key="item.id">
+                    <div class="cart-productimg">
+                      <img :src="item.product.imageUrl" alt="產品照" class="uctimg img-fluid">
                     </div>
-                  </td>
-                  <td class="text-end">
-                    <div>${{ $filters.currency(item.total) }}</div>
-                    <div class="text-success" v-if="cart.final_total !== cart.total">折扣價 : ${{
-                      $filters.currency(item.final_total) }}</div>
-                    <div class="text-success" v-if="item.coupon">已使用優惠券</div>
-                  </td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr v-if="cart.final_total !== cart.total">
-                  <td colspan="3" class="text-end">
-                    <div>
-                      <span>原價 ${{ $filters.currency(cart.total) }}</span><br>
-                      <span class="text-success">折扣 - ${{ $filters.currency(cart.total - cart.final_total) }}</span>
+                    <div class="payment-productname">
+                      <div class="productname-text">
+                        {{ item.product.title }}
+                      </div>
+                      <div class="cart-qty-mobi">
+                        <div class="cartqtynum">數量 : {{ item.qty }}</div>
+                      </div>
                     </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td colspan="3" class="text-end text-danger finaltotal">實際付款金額 ${{ $filters.currency(cart.final_total)
-                  }}
-                  </td>
-                </tr>
-              </tfoot>
-            </table>
+                    <div class="cart-qty">
+                      數量 : {{ item.qty }}
+                    </div>
+                    <div class="cart-productprice text-end">
+                      ${{ $filters.currency(item.total) }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="price_difference text-success text-end" v-if="cart.total !== cart.final_total">
+              折扣 : - ${{ $filters.currency(cart.total - cart.final_total) }}
+            </div>
+            <div class="finalprice_section">
+              <div class="d-flex cart-price">
+                <div class="me-auto p-2"></div>
+                <p class="p-2 payment-totalprice">實際結帳金額：<span class="">NT$ {{
+                  $filters.currency(Math.ceil(cart.final_total)) }}</span>
+                </p>
+              </div>
+            </div>
             <div class="col-md-12 col-12 usecoupon input-gorup mb-3 input-group-sm">
               <p class="title">使用優惠券</p>
               <div class="row">
@@ -69,7 +68,7 @@
                     placeholder="請輸入優惠碼">
                 </div>
                 <div class="col-md-3 input-group-append">
-                  <button class="btn btn-secondary" type="button" @click="addCouponCode">套用優惠碼</button>
+                  <button class="btn btn-secondary usecouponbtn" type="button" @click="addCouponCode">套用優惠碼</button>
                 </div>
               </div>
             </div>
@@ -144,29 +143,29 @@
               </div>
             </div>
             <VForm class="orderinfo col-md-12" v-slot="{ errors }" @submit="createOrder">
-              <p class="title">收件人資訊</p>
+              <p class="title">收件人資訊<span class="markinput">( * 為必填欄位)</span></p>
               <div class="mb-3">
-                <label for="name" class="form-label">收件人姓名</label>
+                <label for="name" class="form-label">* 收件人姓名</label>
                 <VField id="name" name="姓名" type="name" class="form-control" :class="{ 'is-invalid': errors['姓名'] }"
                   placeholder="請輸入姓名" rules="required" v-model="form.user.name"></VField>
                 <ErrorMessage name="姓名" class="invalid-feedback"></ErrorMessage>
               </div>
               <div class="mb-3">
-                <label for="address" class="form-label">收件人地址</label>
+                <label for="address" class="form-label">* 收件人地址</label>
                 <VField id="address" name="地址" type="address" class="form-control"
                   :class="{ 'is-invalid': errors['地址'] }" placeholder="請輸入地址" rules="required"
                   v-model="form.user.address"></VField>
                 <ErrorMessage name="地址" class="invalid-feedback"></ErrorMessage>
               </div>
               <div class="mb-3">
-                <label for="tel" class="form-label">收件人電話</label>
+                <label for="tel" class="form-label">* 收件人電話</label>
                 <VField id="tel" name="電話" type="tel" class="form-control" maxlength="10"
                   :class="{ 'is-invalid': errors['電話'] }" placeholder="請輸入電話" rules="required" v-model="form.user.tel">
                 </VField>
                 <ErrorMessage name="電話" class="invalid-feedback"></ErrorMessage>
               </div>
               <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
+                <label for="email" class="form-label">* Email</label>
                 <VField id="email" name="email" type="email" class="form-control"
                   :class="{ 'is-invalid': errors['email'] }" placeholder="請輸入Email" rules="email|required"
                   v-model="form.user.email"></VField>
@@ -178,7 +177,7 @@
                   v-model="form.user.message"></textarea>
               </div>
               <div class="text-end">
-                <button class="btn btn-danger">確認付款</button>
+                <button class="btn btn-purple">確認付款</button>
               </div>
             </VForm>
           </template>
@@ -196,10 +195,16 @@ h3 {
 
 .paymentschedule {
   margin: 2em 0;
+  display: flex;
 
   .payment-step {
     color: purple;
-    font-size: 1.2em;
+    font-size: 1em;
+    margin: 0 5px;
+
+    @media(max-width: 960px) {
+      font-size: 0.9em;
+    }
   }
 
   .payment-step-dash {
@@ -208,14 +213,170 @@ h3 {
 
   .payment-step-off {
     color: #999;
-    font-size: 1.2em;
+    font-size: 1em;
+    margin: 0 5px;
+
+    @media(max-width: 960px) {
+      font-size: 0.9em;
+    }
   }
+}
+
+.payment-item {
+  padding: 1em;
+
+  @media(max-width: 960px) {
+    padding: 10px;
+  }
+
+  .cart-info {
+    margin-right: 1em;
+    border-bottom: solid 1px #eee;
+
+    @media(max-width: 960px) {
+      margin-bottom: 0;
+      padding: 10px 0;
+    }
+  }
+
+  .cart-delbtn {
+    margin-right: 1em;
+
+    @media(max-width:960px) {
+      margin-right: 10px;
+    }
+  }
+
+  .cart-productimg {
+    width: 150px;
+
+    @media(max-width:960px) {
+      width: 100px;
+    }
+  }
+
+  .payment-productname {
+    width: 400px;
+
+    @media(max-width:960px) {
+      width: 300px;
+      font-size: 1em;
+    }
+
+    .productname-text {
+      font-size: 1em;
+      margin-bottom: 3px;
+    }
+
+    input {
+      width: 60px;
+    }
+  }
+
+  .cart-productprice {
+    width: 150px;
+    color: #7030a0;
+    margin-bottom: 1em;
+    margin-left: 1em;
+    font-weight: bold;
+
+    @media(max-width:960px) {
+      width: 220px;
+      font-size: 0.9em;
+      margin-bottom: 0;
+    }
+  }
+
+  .cart-qty {
+    width: 70px;
+
+    @media(max-width:960px) {
+      margin-left: 10px;
+      display: none;
+    }
+  }
+
+  .cart-qty-mobi {
+    display: none;
+
+    @media(max-width:960px) {
+      display: block;
+    }
+
+    .cartqtynum {
+      padding-left: 0;
+    }
+  }
+
+  .cart-price {
+    max-height: 130px;
+    padding: 0;
+
+    p {
+      margin-right: 10px;
+      margin-top: 10px;
+    }
+
+    .cart-pay-btn {
+      margin-right: 10px;
+    }
+  }
+
+  .cart-price-title {
+    font-weight: bold;
+    font-size: 1.2em;
+    padding-left: 10px;
+    color: #fff;
+    background: #7030a0;
+  }
+}
+
+.price_difference {
+  padding-right: 2em;
+
+  @media(max-width:960px) {
+    padding-right: 1.5em;
+    margin-top: 0;
+  }
+}
+
+.finalprice_section {
+  position: sticky !important;
+  top: 89px !important;
+  background: #fff;
+  margin-bottom: 1em;
+  padding-right: 1.4em;
+
+  @media(max-width: 960px) {
+    padding-right: 1em;
+    top: 75px !important;
+  }
+
+  .payment-totalprice {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #7030a0;
+    padding-right: 10px;
+  }
+}
+
+.payment_btn {
+  margin-top: 10px;
 }
 
 .userfavorite {
   padding: 0 1em 0 1em;
   margin-top: 150px;
   margin-bottom: 5em;
+}
+
+.usecouponbtn {
+  margin-left: -20px;
+
+  @media(max-width: 960px) {
+    margin-left: 0;
+    margin-top: -10px;
+  }
 }
 
 .usecoupon {
@@ -261,6 +422,11 @@ h3 {
 
 label {
   font-weight: bold;
+}
+
+.markinput {
+  font-size: 0.7em;
+  margin-left: 1em;
 }
 </style>
 
@@ -322,7 +488,7 @@ export default {
       this.isLoading = true;
       this.$http.post(url, { data: coupon }).then((res) => {
         if (this.coupon_code === coupon.code) {
-          this.$httpMessageState(res, '已套用優惠券');
+          this.$httpMessageState(res, '套用優惠券');
           this.coupon_code = ''; // 套用完優惠券將其清空
           this.isLoading = false;
           this.getCart();
