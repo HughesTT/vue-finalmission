@@ -6,6 +6,7 @@ import Loading from 'vue3-loading-overlay';
 import 'vue3-loading-overlay/dist/vue3-loading-overlay.css';
 import { currency, date } from '@/methods/filters';
 import $httpMessageState from '@/methods/pushMessageState';
+import emitter from '@/methods/emitter';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import {
   Form, Field, ErrorMessage, defineRule, configure,
@@ -31,6 +32,8 @@ configure({
 });
 setLocale('zh_TW');
 app.config.globalProperties.$httpMessageState = $httpMessageState;
+app.config.globalProperties.emitter = emitter;
+app.provide('emitter', emitter);
 app.use(VueAxios, axios);
 app.use(router);
 app.component('LoadingElement', Loading);

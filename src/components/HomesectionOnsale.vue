@@ -7,7 +7,7 @@
           <a href="#" @click.prevent="viewProduct(item.id)">
             <div class="product_img">
               <div class="morebox">
-                <div class="morebtn">more</div>
+                <div class="morebtn">更多資訊</div>
               </div>
               <img :src="item.imageUrl" class="img-fluid" alt="image">
             </div>
@@ -77,7 +77,7 @@ h3 {
   left: 47%;
   transform: translate(-50%, -50%);
   transition: all 0.3s ease-in-out;
-  font-size: 1.5em;
+  font-size: 1em;
   padding: 0.5em;
   border-radius: 5px;
   opacity: 0;
@@ -85,6 +85,7 @@ h3 {
   @media(max-width: 960px) {
     top: 100px;
     left: 45%;
+    font-size: 0.9em;
   }
 }
 

@@ -2,11 +2,11 @@
   <section>
     <div class="bluetooth_section">
       <div class="row">
-        <div class="col-md-7">
+        <div class="col-md-7 col-sm-6">
           <img src="../assets/img/homesection.png" class="img-fluid">
         </div>
         <div class="bgcolorsection"></div>
-        <div class="col-md-5">
+        <div class="col-md-5 col-sm-6">
           <div class="bluetooth_section_content">
             <div class="section_title">無線自由 真實聲音</div>
             <div class="sub_section_title">親耳感受</div>
@@ -55,11 +55,11 @@
   margin-left: 15%;
 
   @media(max-width:960px) {
-    width: 60%;
-    height: 40%;
+    width: 50%;
+    height: 26%;
     background: #ddd;
-    margin-top: 20%;
-    margin-left: 35%;
+    margin-top: 10%;
+    margin-left: 10%;
   }
 }
 
@@ -137,7 +137,8 @@ section {
   @media(max-width:960px) {
     background: url('../assets/img/noisecanceling_bg.jpg') no-repeat;
     background-position: right 10% bottom 45%;
-    padding: 2em;
+    min-height: 500px;
+    padding: 80px 2em;
   }
 
   .sectionimg {

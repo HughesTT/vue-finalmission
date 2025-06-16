@@ -8,19 +8,19 @@
           <template v-if="cart.carts && cart.carts.length > 0">
             <div class="paymentschedule justify-content-center">
               <div class="payment-step-off text-center">
-                <i class="bi bi-1-circle-fill"></i> 確認商品
+                <i class="bi bi-1-circle"></i> <br>確認商品
               </div>
-              <div class="payment-step text-center">
+              <div class="payment-step align-middle text-center">
                 <img src="../assets/img/dash.png" alt="image">
               </div>
               <div class="payment-step text-center">
-                <i class="bi bi-2-circle-fill"></i> 填寫結帳資訊
+                <i class="bi bi-2-circle-fill"></i> <br>填寫結帳資訊
               </div>
-              <div class="payment-step text-center">
+              <div class="payment-step align-middle text-center">
                 <img src="../assets/img/dash.png" alt="image">
               </div>
               <div class="payment-step-off text-center">
-                <i class="bi bi-3-circle"></i> 訂購完成
+                <i class="bi bi-3-circle"></i> <br>訂購完成
               </div>
             </div>
 
@@ -488,12 +488,12 @@ export default {
       this.isLoading = true;
       this.$http.post(url, { data: coupon }).then((res) => {
         if (this.coupon_code === coupon.code) {
-          this.$httpMessageState(res, '套用優惠券');
+          this.$httpMessageState(res, '成功套用優惠券');
           this.coupon_code = ''; // 套用完優惠券將其清空
           this.isLoading = false;
           this.getCart();
         } else {
-          this.$httpMessageState(res, '優惠碼使用');
+          this.$httpMessageState(res, '優惠碼使用成功');
           this.isLoading = false;
         }
       });
@@ -505,7 +505,7 @@ export default {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/pay/${this.orderId}`;
       this.$http.post(url).then((res) => {
         if (res.data.success) { // 若回傳成功，顯示完成付款資訊
-          this.$httpMessageState(res, '付款');
+          this.$httpMessageState(res, '付款成功');
         }
       });
     },

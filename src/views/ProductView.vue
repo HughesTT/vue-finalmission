@@ -37,13 +37,13 @@
           </a>
           <div class="btntool">
             <div class="bd-highlight">
-              <button class="btn btn-outline-danger" @click="toggleFavorite(item)">
+              <button class="btn btn-outline-purple" @click="toggleFavorite(item)">
                 <i class="bi bi-heart" v-if="!isFavorite(item.id)"></i>
                 <i class="bi bi-heart-fill" v-else></i>
               </button>
             </div>
             <div class="bd-highlight">
-              <button type="button" class="moreinfo btn btn-outline-danger" @click="addToCart(item.id)"
+              <button type="button" class="moreinfo btn btn-outline-purple" @click="addToCart(item.id)"
                 :disabled="this.status.loadingItem === item.id">
                 <div v-if="this.status.loadingItem === item.id" class="spinner-grow text-danger spinner-grow-sm"
                   role="status">
@@ -125,7 +125,7 @@ h3 {
   transform: translate(-50%, -50%);
   transition: all 0.3s ease-in-out;
   font-size: 1em;
-  padding: 0.5em;
+  padding: 5px;
   border-radius: 5px;
   opacity: 0;
 
@@ -140,6 +140,11 @@ h3 {
   opacity: 1;
   background: #7030a0;
   color: #fff;
+  text-align: center;
+
+  @media(max-width:376px) {
+    font-size: 0.8em;
+  }
 }
 
 .product_price {
@@ -222,7 +227,7 @@ export default {
         qty: 1,
       };
       this.$http.post(url, { data: cart }).then((res) => {
-        this.$httpMessageState(res, '加入購物車');
+        this.$httpMessageState(res, '成功加入購物車');
         this.status.loadingItem = '';
         emitter.emit('update-cart');
         // this.$router.push('/productlist/usercart');

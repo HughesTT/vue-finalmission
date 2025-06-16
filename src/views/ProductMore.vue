@@ -31,12 +31,12 @@
                   </div>
                 </div>
                 <div class="p-1 bd-highlight">
-                  <button type="button" class="btn btn-outline-danger" @click="addToCart(product.id)">
+                  <button type="button" class="btn btn-outline-purple" @click="addToCart(product.id)">
                     加到購物車
                   </button>
                 </div>
                 <div class="p-1 bd-highlight">
-                  <button class="btn btn-outline-danger" @click="toggleFavorite(product)">
+                  <button class="btn btn-outline-purple" @click="toggleFavorite(product)">
                     <i class="bi bi-heart" v-if="!isFavorite(product.id)"></i>
                     <i class="bi bi-heart-fill" v-else></i>
                   </button>
@@ -548,7 +548,7 @@ export default {
       };
       this.$http.post(url, { data: cart }).then((res) => {
         this.isLoading = false; // 讀取完成後關閉動態
-        this.$httpMessageState(res, '加入購物車');
+        this.$httpMessageState(res, '成功加入購物車');
         this.status.loadingItem = '';
         emitter.emit('update-cart');
         // this.$router.push('/productlist/usercart');

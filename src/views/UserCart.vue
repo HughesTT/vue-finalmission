@@ -8,19 +8,19 @@
           <template v-if="cart.carts && cart.carts.length > 0">
             <div class="paymentschedule justify-content-center">
               <div class="payment-step text-center">
-                <i class="bi bi-1-circle-fill"></i> 確認商品
+                <i class="bi bi-1-circle-fill"></i> <br>確認商品
               </div>
-              <div class="payment-step text-center">
+              <div class="payment-step align-middle text-center">
                 <img src="../assets/img/dash.png" alt="image">
               </div>
               <div class="payment-step-off text-center">
-                <i class="bi bi-2-circle"></i> 填寫結帳資訊
+                <i class="bi bi-2-circle"></i> <br>填寫結帳資訊
               </div>
-              <div class="payment-step text-center">
+              <div class="payment-step align-middle text-center">
                 <img src="../assets/img/dash.png" alt="image">
               </div>
               <div class="payment-step-off text-center">
-                <i class="bi bi-3-circle"></i> 訂購完成
+                <i class="bi bi-3-circle"></i> <br>訂購完成
               </div>
             </div>
 
@@ -58,7 +58,7 @@
                   <div class="me-auto p-2 bd-highlight"></div>
                   <p class="p-2 bd-highlight">結帳金額：<span class="cart-totalprice">NT$ {{
                     $filters.currency(cart.total)
-                  }}</span>
+                      }}</span>
                   </p>
                   <div class="p-2 bd-highlight text-end cart-pay-btn">
                     <router-link to="/user/payment" class="btn btn-purple">結帳去</router-link>

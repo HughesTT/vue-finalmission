@@ -236,7 +236,7 @@ export default {
         qty: 1,
       };
       this.$http.post(url, { data: cart }).then((res) => {
-        this.$httpMessageState(res, '加入購物車');
+        this.$httpMessageState(res, '成功加入購物車');
         this.status.loadingItem = '';
         emitter.emit('update-cart');
         // this.$router.push('/productlist/usercart');

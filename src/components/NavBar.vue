@@ -38,6 +38,10 @@ nav {
   @media(max-width:960px) {
     width: 62px
   }
+
+  @media(max-width:376px) {
+    width: 55px;
+  }
 }
 
 .nav-link {
@@ -54,6 +58,10 @@ nav {
 
   @media(max-width:960px) {
     font-size: 1em;
+  }
+
+  @media(max-width:376px) {
+    padding: 0 10px;
   }
 }
 
@@ -74,6 +82,10 @@ nav {
   border-radius: 5px;
   margin-left: 16px;
   margin-top: -5px;
+
+  @media(max-width:376px) {
+    margin-left: 10px;
+  }
 }
 </style>
 

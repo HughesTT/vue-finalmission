@@ -1,6 +1,7 @@
 <template>
   <LoadingElement :active="isLoading"></LoadingElement>
   <div>
+    <ToastMessages />
     <NavBar />
     <HeaderBanner />
     <HomesectionOnsale />
@@ -20,6 +21,7 @@ import HomeSection from '@/components/HomeSection.vue';
 import CouponView from '@/components/CouponView.vue';
 import HomesectionOnsale from '@/components/HomesectionOnsale.vue';
 import Footer from '@/components/FooterView.vue';
+import ToastMessages from '@/components/ToastMessages.vue';
 
 export default {
   name: 'HomeView',
@@ -35,6 +37,7 @@ export default {
     HomeSection,
     CouponView,
     HomesectionOnsale,
+    ToastMessages,
   },
 };
 </script>

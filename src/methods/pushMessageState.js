@@ -1,18 +1,28 @@
 import emitter from '@/methods/emitter';
 
-export default function (response, title = '更新') {
-  if (response.data.success) {
+export default function (response, title) {
+  // 先判斷自定義的 response.success，若無則判斷 response.data.success
+  const isSuccess = typeof response.success !== 'undefined'
+    ? response.success
+    : response.data && response.data.success;
+
+  if (isSuccess) {
     emitter.emit('push-message', {
       style: 'success',
-      title: `${title} 成功`,
+      title: `${title}`,
     });
   } else {
-    const message = typeof response.data.message === 'string' ? [response.data.message] : response.data.message;
-    // 以條件運算子宣告message，依照條件判斷message須回傳哪個值
+    let message = '';
+    if (response.message) {
+      message = response.message;
+    } else if (response.data && response.data.message) {
+      message = response.data.message;
+    }
+    const msgArr = typeof message === 'string' ? [message] : message;
     emitter.emit('push-message', {
       style: 'danger',
-      title: `${title} 失敗`,
-      content: message.join('`'),
+      title: `${title}`,
+      content: msgArr ? msgArr.join('`') : '',
     });
   }
 }
