@@ -88,6 +88,10 @@ section {
 
   .bluetooth_section_content {
     margin-left: 3em;
+
+    @media(max-width:960px) {
+      margin-left: 1em;
+    }
   }
 
   .section_title {
