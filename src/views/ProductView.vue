@@ -268,7 +268,10 @@ export default {
       emitter.emit('update-favorite');
     },
     toCategory(category) {
-      this.$router.push(`/productlist/${category}`);
+      // 使用 replace 而不是 push，並設置 active 狀態
+      this.$router.replace(`/productlist/${category}`);
+      // 或者可以發送事件給 NavBar 更新狀態
+      emitter.emit('update-navbar-active', 'productlist');
     },
   },
   created() {

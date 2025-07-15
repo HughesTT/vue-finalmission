@@ -6,7 +6,8 @@
       </a>
       <ul class="nav justify-content-end">
         <li class="nav-item">
-          <router-link to="/productlist/allproducts" class="nav-link" active-class="active">所有商品</router-link>
+          <router-link to="/productlist/allproducts" class="nav-link"
+            :class="{ active: isProductListActive }">所有商品</router-link>
         </li>
         <li class="nav-item">
           <router-link to="/aboutus" class="nav-link" active-class="active">關於我們</router-link>
@@ -98,6 +99,11 @@ export default {
       favNum: 0,
       cartNum: 0,
     };
+  },
+  computed: {
+    isProductListActive() {
+      return this.$route.path.startsWith('/productlist/');
+    },
   },
   methods: {
     getCart() {
