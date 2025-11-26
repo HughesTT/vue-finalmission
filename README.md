@@ -16,7 +16,7 @@ Bolby Digital
 * 優惠券列表、新增編輯或刪除優惠券
 
 # 專案技術
-Vue3/Vue Cli/Option API/Vue Router/Bootstrap5/Scss
+Vue 3 / Vue Cli / Option API  / Vue Router / Bootstrap5 / Scss
 
 # 專案管理
 git / gitHub
