@@ -6,19 +6,19 @@
         <h3><i class="bi bi-cart-check"></i> 訂單資訊</h3>
         <div class="paymentschedule justify-content-center">
           <div class="payment-step-off text-center">
-            <i class="bi bi-1-circle"></i> 確認商品
+            <i class="bi bi-1-circle"></i> <br>確認商品
           </div>
           <div class="payment-step text-center">
             <img src="../assets/img/dash.png" alt="image">
           </div>
           <div class="payment-step-off text-center">
-            <i class="bi bi-2-circle"></i> 填寫結帳資訊
+            <i class="bi bi-2-circle"></i> <br>填寫結帳資訊
           </div>
           <div class="payment-step text-center">
             <img src="../assets/img/dash.png" alt="image">
           </div>
           <div class="payment-step text-center">
-            <i class="bi bi-3-circle-fill"></i> 訂購完成
+            <i class="bi bi-3-circle-fill"></i> <br>訂購完成
           </div>
         </div>
         <p>購買商品如下</p>

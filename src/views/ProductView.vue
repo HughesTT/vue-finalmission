@@ -125,7 +125,7 @@ h3 {
   transform: translate(-50%, -50%);
   transition: all 0.3s ease-in-out;
   font-size: 1em;
-  padding: 0.5em;
+  padding: 5px;
   border-radius: 5px;
   opacity: 0;
 
@@ -140,6 +140,11 @@ h3 {
   opacity: 1;
   background: #7030a0;
   color: #fff;
+  text-align: center;
+
+  @media(max-width:376px) {
+    font-size: 0.8em;
+  }
 }
 
 .product_price {
@@ -222,7 +227,7 @@ export default {
         qty: 1,
       };
       this.$http.post(url, { data: cart }).then((res) => {
-        this.$httpMessageState(res, '加入購物車');
+        this.$httpMessageState(res, '成功加入購物車');
         this.status.loadingItem = '';
         emitter.emit('update-cart');
         // this.$router.push('/productlist/usercart');
@@ -263,7 +268,10 @@ export default {
       emitter.emit('update-favorite');
     },
     toCategory(category) {
-      this.$router.push(`/productlist/${category}`);
+      // 使用 replace 而不是 push，並設置 active 狀態
+      this.$router.replace(`/productlist/${category}`);
+      // 或者可以發送事件給 NavBar 更新狀態
+      emitter.emit('update-navbar-active', 'productlist');
     },
   },
   created() {

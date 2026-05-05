@@ -32,8 +32,8 @@
         <div class="col-md-3 col-12 footer_section">
           <div class="input-group">
             <input type="text" class="form-control" placeholder="輸入Email訂閱電子報" aria-label="輸入Email訂閱電子報"
-              aria-describedby="button-addon2">
-            <button class="btn btn-outline-light" type="button" id="button-addon2">訂閱</button>
+              aria-describedby="button-addon2" v-model="subscribeEmail" @keyup.enter="subscribe">
+            <button class="btn btn-outline-light" type="button" id="button-addon2" @click="subscribe">訂閱</button>
             <p>訂閱電子報可收到優惠訊息以及最新產品資訊。</p>
           </div>
         </div>
@@ -91,3 +91,28 @@ footer {
   margin-top: 10px;
 }
 </style>
+
+<script>
+export default {
+  data() {
+    return {
+      subscribeEmail: '',
+    };
+  },
+  methods: {
+    subscribe() {
+      if (!this.subscribeEmail) {
+        this.$httpMessageState({ error: true }, '請輸入電子郵件地址');
+        return;
+      }
+      const emailRule = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRule.test(this.subscribeEmail)) {
+        this.$httpMessageState({ success: false }, '請輸入有效的電子郵件地址');
+        return;
+      }
+      this.$httpMessageState({ success: true }, '訂閱電子報成功');
+      this.subscribeEmail = '';
+    },
+  },
+};
+</script>

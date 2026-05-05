@@ -121,7 +121,7 @@ export default {
     delOrder() {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/order/${this.tempOrder.id}`;
       this.$http.delete(api).then((res) => {
-        this.$httpMessageState(res, '刪除訂單');
+        this.$httpMessageState(res, '成功刪除訂單');
         const delComponent = this.$refs.delModal;
         delComponent.hideModal();
         this.emitter.emit('update-orders');
