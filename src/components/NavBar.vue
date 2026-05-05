@@ -6,8 +6,7 @@
       </a>
       <ul class="nav justify-content-end">
         <li class="nav-item">
-          <router-link to="/productlist/allproducts" class="nav-link"
-            :class="{ active: isProductListActive }">所有商品</router-link>
+          <router-link to="/productlist/allproducts" class="nav-link" active-class="active">所有商品</router-link>
         </li>
         <li class="nav-item">
           <router-link to="/aboutus" class="nav-link" active-class="active">關於我們</router-link>
@@ -39,10 +38,6 @@ nav {
   @media(max-width:960px) {
     width: 62px
   }
-
-  @media(max-width:376px) {
-    width: 55px;
-  }
 }
 
 .nav-link {
@@ -59,10 +54,6 @@ nav {
 
   @media(max-width:960px) {
     font-size: 1em;
-  }
-
-  @media(max-width:376px) {
-    padding: 0 10px;
   }
 }
 
@@ -83,10 +74,6 @@ nav {
   border-radius: 5px;
   margin-left: 16px;
   margin-top: -5px;
-
-  @media(max-width:376px) {
-    margin-left: 10px;
-  }
 }
 </style>
 
@@ -99,11 +86,6 @@ export default {
       favNum: 0,
       cartNum: 0,
     };
-  },
-  computed: {
-    isProductListActive() {
-      return this.$route.path.startsWith('/productlist/');
-    },
   },
   methods: {
     getCart() {

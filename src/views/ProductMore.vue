@@ -548,7 +548,7 @@ export default {
       };
       this.$http.post(url, { data: cart }).then((res) => {
         this.isLoading = false; // 讀取完成後關閉動態
-        this.$httpMessageState(res, '成功加入購物車');
+        this.$httpMessageState(res, '加入購物車');
         this.status.loadingItem = '';
         emitter.emit('update-cart');
         // this.$router.push('/productlist/usercart');

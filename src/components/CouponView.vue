@@ -119,6 +119,9 @@ export default {
           setTimeout(() => {
             this.copycheck = false; // 2 秒後恢復初始狀態
           }, 2000);
+        })
+        .catch((err) => {
+          console.error('複製失敗：', err);
         });
     },
   },

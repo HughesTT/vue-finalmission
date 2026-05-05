@@ -7,16 +7,16 @@
         <router-link to="/productlist/allproducts">
           <button class="btn btn-outline-secondary" :class="{ 'active': category === 'all' }">全部商品</button>
         </router-link>
-        <button class="btn btn-outline-secondary" :class="{ 'active': category === 'gaming' }"
-          @click.prevent="toCategory('gaming')">電競</button>
-        <button class="btn btn-outline-secondary" :class="{ 'active': category === 'bluetooth' }"
-          @click.prevent="toCategory('bluetooth')">藍芽
+        <button class="btn btn-outline-secondary" :class="{ 'active': category === '電競' }"
+          @click.prevent="toCategory('電競')">電競</button>
+        <button class="btn btn-outline-secondary" :class="{ 'active': category === '藍芽' }"
+          @click.prevent="toCategory('藍芽')">藍芽
         </button>
-        <button class="btn btn-outline-secondary" :class="{ 'active': category === 'noise-canceling' }"
-          @click.prevent="toCategory('noise-canceling')">降噪
+        <button class="btn btn-outline-secondary" :class="{ 'active': category === '降噪' }"
+          @click.prevent="toCategory('降噪')">降噪
         </button>
-        <button class="btn btn-outline-secondary" :class="{ 'active': category === 'music-glasses' }"
-          @click.prevent="toCategory('music-glasses')">音訊眼鏡
+        <button class="btn btn-outline-secondary" :class="{ 'active': category === '音樂眼鏡' }"
+          @click.prevent="toCategory('音樂眼鏡')">音樂眼鏡
         </button>
       </div>
       <div class="row">
@@ -125,7 +125,7 @@ h3 {
   transform: translate(-50%, -50%);
   transition: all 0.3s ease-in-out;
   font-size: 1em;
-  padding: 5px;
+  padding: 0.5em;
   border-radius: 5px;
   opacity: 0;
 
@@ -140,11 +140,6 @@ h3 {
   opacity: 1;
   background: #7030a0;
   color: #fff;
-  text-align: center;
-
-  @media(max-width:376px) {
-    font-size: 0.8em;
-  }
 }
 
 .product_price {
@@ -212,7 +207,7 @@ export default {
       this.$http.get(url).then((res) => {
         this.isLoading = false;
         if (res.data.success) {
-          this.products = res.data.products.reverse();
+          this.products = res.data.products.filter((item) => item.unit === 'headphone');
         }
       });
     },
@@ -227,7 +222,7 @@ export default {
         qty: 1,
       };
       this.$http.post(url, { data: cart }).then((res) => {
-        this.$httpMessageState(res, '成功加入購物車');
+        this.$httpMessageState(res, '加入購物車');
         this.status.loadingItem = '';
         emitter.emit('update-cart');
         // this.$router.push('/productlist/usercart');
@@ -268,10 +263,7 @@ export default {
       emitter.emit('update-favorite');
     },
     toCategory(category) {
-      // 使用 replace 而不是 push，並設置 active 狀態
-      this.$router.replace(`/productlist/${category}`);
-      // 或者可以發送事件給 NavBar 更新狀態
-      emitter.emit('update-navbar-active', 'productlist');
+      this.$router.push(`/productlist/${category}`);
     },
   },
   created() {

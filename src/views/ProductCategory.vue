@@ -7,16 +7,16 @@
         <router-link to="/productlist/allproducts">
           <button class="btn btn-outline-secondary">全部商品</button>
         </router-link>
-        <button class="btn btn-outline-secondary" :class="{ 'active': category === 'gaming' }"
-          @click.prevent="toCategory('gaming')">電競</button>
-        <button class="btn btn-outline-secondary" :class="{ 'active': category === 'bluetooth' }"
-          @click.prevent="toCategory('bluetooth')">藍芽
+        <button class="btn btn-outline-secondary" :class="{ 'active': category === '電競' }"
+          @click.prevent="toCategory('電競')">電競</button>
+        <button class="btn btn-outline-secondary" :class="{ 'active': category === '藍芽' }"
+          @click.prevent="toCategory('藍芽')">藍芽
         </button>
-        <button class="btn btn-outline-secondary" :class="{ 'active': category === 'noise-canceling' }"
-          @click.prevent="toCategory('noise-canceling')">降噪
+        <button class="btn btn-outline-secondary" :class="{ 'active': category === '降噪' }"
+          @click.prevent="toCategory('降噪')">降噪
         </button>
-        <button class="btn btn-outline-secondary" :class="{ 'active': category === 'music-glasses' }"
-          @click.prevent="toCategory('music-glasses')">音訊眼鏡
+        <button class="btn btn-outline-secondary" :class="{ 'active': category === '音樂眼鏡' }"
+          @click.prevent="toCategory('音樂眼鏡')">音樂眼鏡
         </button>
       </div>
 
@@ -236,7 +236,7 @@ export default {
         qty: 1,
       };
       this.$http.post(url, { data: cart }).then((res) => {
-        this.$httpMessageState(res, '成功加入購物車');
+        this.$httpMessageState(res, '加入購物車');
         this.status.loadingItem = '';
         emitter.emit('update-cart');
         // this.$router.push('/productlist/usercart');
